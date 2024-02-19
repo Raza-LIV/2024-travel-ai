@@ -1,17 +1,18 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import App from "../App";
 import { ROUTES } from "../constants/roures";
+import { Home } from "../components/Home/Home";
 
 export const RouterComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={ROUTES.HOME} element={<App />} />
-        {/* <Route path={ROUTES.GENERATION} element={<App />} />
-        <Route path={ROUTES.SAVED} element={<App />} />
-        <Route path={ROUTES.TRAVEL} element={<App />} />
-        <Route path={ROUTES.SETTINGS} element={<App />} /> */}
+        <Route path={ROUTES.EMPTY} element={<Home />} />
+        {/* <Route path={ROUTES.HOME} element={<Home />} /> */}
+        {/* <Route path={ROUTES.GENERATION} element={< />} />
+        <Route path={ROUTES.SAVED} element={< />} />
+        <Route path={ROUTES.TRAVEL} element={< />} />
+        <Route path={ROUTES.SETTINGS} element={< />} /> */}
       </Routes>
     </BrowserRouter>
   );
