@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import { COLORS } from "../../constants/colors";
 
-export const mobileHomeItemContainerTrue = css`
+export const mobileHomeItemContainerPrimary = css`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -13,7 +13,7 @@ export const mobileHomeItemContainerTrue = css`
     background-color: ${COLORS.PRIMARY};
     margin: 0 0 10px 0;
 `
-export const mobileHomeItemContainerFalse = css`
+export const mobileHomeItemContainerSecondary = css`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -35,12 +35,12 @@ export const cardTop = css`
     justify-content: space-between;
     align-items: center;
 `
-export const cardTopLabelTrue = css`
+export const cardTopLabelPrimary = css`
     color: ${COLORS.SECONDARY};
     font-size: 24px;
     font-weight: bold;
 `
-export const cardTopLabelFalse = css`
+export const cardTopLabelSecondary = css`
     color: ${COLORS.PRIMARY};
     font-size: 24px;
     font-weight: bold;
@@ -52,7 +52,7 @@ export const hello = css`
     overflow: hidden;
     font-size: 12px;
 `
-export const cardDescriptionTrue = css`
+export const cardDescriptionPrimary = css`
     margin: 5px 10px 10px 10px;
     height: 120px;
     width: calc(100% - 20px);
@@ -60,7 +60,7 @@ export const cardDescriptionTrue = css`
     font-size: 12px;
     color: ${COLORS.SECONDARY};
 `
-export const cardDescriptionFalse = css`
+export const cardDescriptionSecondary = css`
     margin: 5px 10px 10px 10px;
     height: 120px;
     width: calc(100% - 20px);

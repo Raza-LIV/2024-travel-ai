@@ -1,7 +1,10 @@
 // import React from "react";
 // import { useGetWidth } from "../../hooks/get-width.hook";
 import { FavoritesIcon } from "../../assets/icons/FavoritesIcon";
-import { SavedIcon } from "../../assets/icons/savedTravels";
+import { GenerationIcon } from "../../assets/icons/GenerationIcon";
+import { SettingsIcon } from "../../assets/icons/SettingsIcon";
+import { SavedIcon } from "../../assets/icons/SavedTravels";
+import { TEXT } from "../../assets/text/text";
 import { MobileHomeItem } from "../../components/MobileHomeItem/MobileHomeItem";
 import {
   homeContainer,
@@ -23,37 +26,27 @@ export const Home = () => {
         </div>
         <div className={itemsHolder}>
           <MobileHomeItem
-            icon={<SavedIcon isPrimaryColor={false} />}
-            description="This tab allows you to create and manage new travel itineraries. Here,
-            you can input your preferences, such as the city and country you want to
-            explore, the duration of your stay, and your interests. The system will
-            generate a personalized travel route for you based on the provided
-            inputs."
-            label="Generation"
+            icon={<GenerationIcon isPrimaryColor={false} />}
+            description={TEXT.GENERATION_DESCRIPTION}
+            label={TEXT.GENERATION}
             isPrimary={true}
           />
           <MobileHomeItem
             icon={<SavedIcon isPrimaryColor={true} />}
-            description="In this tab, you can view and access all your previously generated travel itineraries. You can revisit and make changes to any of the saved itineraries as per your requirements."
-            label="Saved Travels"
-            isPrimary={false}
-          />
-          <MobileHomeItem
-            icon={<SavedIcon isPrimaryColor={true} />}
-            description="This tab"
-            label="Generation"
+            description={TEXT.SAVED_DESCRIPTION}
+            label={TEXT.SAVED}
             isPrimary={false}
           />
           <MobileHomeItem
             icon={<FavoritesIcon isPrimaryColor={true} />}
-            description="This tab"
-            label="Generation"
+            description={TEXT.FAVORITES_DESCRIPTION}
+            label={TEXT.FAVORITES}
             isPrimary={false}
           />
           <MobileHomeItem
-            icon={<SavedIcon isPrimaryColor={true} />}
-            description="This tab"
-            label="Generation"
+            icon={<SettingsIcon isPrimaryColor={true} />}
+            description={TEXT.SETTINGS_DESCRIPTION}
+            label={TEXT.SETTINGS}
             isPrimary={false}
           />
         </div>

@@ -5,19 +5,19 @@ export const homeContainer = css`
     display: flex;
     flex-direction: column;
     background-color: ${COLORS.PRIMARY};
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 100vw;
     height: 100vh;
 `
 export const dashboard = css`
-display: flex;
-justify-content: center;
-align-items: center;
-color: ${COLORS.SECONDARY};
-font-size: 22px;
-width: 100vw;
-height: 106px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${COLORS.SECONDARY};
+    font-size: 22px;
+    width: 100vw;
+    height: 106px;
 `
 export const navigationMenu = css`
     display: flex;
@@ -27,11 +27,17 @@ export const navigationMenu = css`
     width: 100vw;
     height: calc(100vh - 106px);
     border-radius: 30px 30px 0 0;
+    overflow: hidden;
+    overflow-y: scroll;
+    
+    &::-webkit-scrollbar {
+        width: 0;
+    }
 `
 export const userName = css`
     color: ${COLORS.PRIMARY};
     width: 100vw;
-    height: 60px;
+    padding: 28px 0 0 0 ;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -43,12 +49,5 @@ export const itemsHolder = css`
     display: flex;
     flex-direction: column;
     margin: 10px;
-    height: calc(100% - 20px);
     width: calc(100vw - 20px);
-    overflow: hidden;
-    overflow-y: scroll;
-    
-    &::-webkit-scrollbar {
-        width: 0;
-    }
 `

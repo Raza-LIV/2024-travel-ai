@@ -1,13 +1,15 @@
 import { ReactNode } from "react";
 import {
-  mobileHomeItemContainerTrue,
-  mobileHomeItemContainerFalse,
+  mobileHomeItemContainerPrimary,
+  mobileHomeItemContainerSecondary,
   cardTop,
-  cardTopLabelTrue,
-  cardTopLabelFalse,
-  cardDescriptionTrue,
-  cardDescriptionFalse,
+  cardTopLabelPrimary,
+  cardTopLabelSecondary,
+  cardDescriptionPrimary,
+  cardDescriptionSecondary,
 } from "./MobileHomeItem.styled";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants/roures";
 
 interface IProps {
   label: string;
@@ -22,19 +24,29 @@ export const MobileHomeItem = ({
   label,
   isPrimary,
 }: IProps) => {
+  const navigate = useNavigate();
   return (
     <div
       className={
-        isPrimary ? mobileHomeItemContainerTrue : mobileHomeItemContainerFalse
+        isPrimary
+          ? mobileHomeItemContainerPrimary
+          : mobileHomeItemContainerSecondary
       }
+      onClick={() => navigate(ROUTES.SAVED)}
     >
       <div className={cardTop}>
-        <div className={isPrimary ? cardTopLabelTrue : cardTopLabelFalse}>
+        <div
+          className={isPrimary ? cardTopLabelPrimary : cardTopLabelSecondary}
+        >
           {label}
         </div>
         <div>{icon}</div>
       </div>
-      <div className={isPrimary ? cardDescriptionTrue : cardDescriptionFalse}>
+      <div
+        className={
+          isPrimary ? cardDescriptionPrimary : cardDescriptionSecondary
+        }
+      >
         {description}
       </div>
     </div>
