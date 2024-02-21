@@ -29,6 +29,12 @@ export const MobileTravelItem = ({
   generatedTravelText,
   flagTravel,
 }: IProps) => {
+  const chooseFlag: React.CSSProperties = {
+    backgroundImage: `url(${flagTravel})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
     <div
       className={css([
@@ -37,7 +43,7 @@ export const MobileTravelItem = ({
         isAdd ? add : notAdd,
       ])}
     >
-      <div className={flag}>FLAG</div>
+      <div className={flag} style={chooseFlag}></div>
       <div className={content}>
         <div className={css([isAdd ? addColor : labelColor, labelTravel])}>
           {label}
