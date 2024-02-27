@@ -13,6 +13,7 @@ import {
   userName,
   itemsHolder,
 } from "./Home.styled";
+import { ROUTES } from "../../constants/roures";
 
 export const Home = () => {
   // const { windowSize } = useGetWidth();
@@ -30,24 +31,28 @@ export const Home = () => {
             description={TEXT.GENERATION_DESCRIPTION}
             label={TEXT.GENERATION}
             isPrimary={true}
+            nav={ROUTES.GENERATION}
           />
           <MobileHomeItem
             icon={<SavedIcon isPrimaryColor={true} />}
             description={TEXT.SAVED_DESCRIPTION}
             label={TEXT.SAVED}
             isPrimary={false}
+            nav={ROUTES.SAVED}
           />
           <MobileHomeItem
             icon={<FavoritesIcon isPrimaryColor={true} />}
             description={TEXT.FAVORITES_DESCRIPTION}
             label={TEXT.FAVORITES}
             isPrimary={false}
+            nav={ROUTES.TRAVEL}
           />
           <MobileHomeItem
             icon={<SettingsIcon isPrimaryColor={true} />}
             description={TEXT.SETTINGS_DESCRIPTION}
             label={TEXT.SETTINGS}
             isPrimary={false}
+            nav={ROUTES.SETTINGS}
           />
         </div>
       </div>

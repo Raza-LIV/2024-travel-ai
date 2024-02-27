@@ -9,13 +9,13 @@ import {
   cardDescriptionSecondary,
 } from "./MobileHomeItem.styled";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../constants/roures";
 
 interface IProps {
   label: string;
   icon: ReactNode;
   description: string;
   isPrimary: boolean;
+  nav: string;
 }
 
 export const MobileHomeItem = ({
@@ -23,6 +23,7 @@ export const MobileHomeItem = ({
   description,
   label,
   isPrimary,
+  nav,
 }: IProps) => {
   const navigate = useNavigate();
   return (
@@ -32,7 +33,7 @@ export const MobileHomeItem = ({
           ? mobileHomeItemContainerPrimary
           : mobileHomeItemContainerSecondary
       }
-      onClick={() => navigate(ROUTES.SAVED)}
+      onClick={() => navigate(nav)}
     >
       <div className={cardTop}>
         <div

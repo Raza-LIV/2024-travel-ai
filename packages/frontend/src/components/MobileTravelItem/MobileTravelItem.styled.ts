@@ -25,11 +25,11 @@ export const notAdd = css`
 `
 export const flag = css`
     height: 110px;
-    width: 150px;
+    width: 35%;
     overflow: hidden;
 `
 export const content = css`
-    width: 100%;
+    width: 65%;
     height: 100%;
     display: flex;
     flex-direction: column;
