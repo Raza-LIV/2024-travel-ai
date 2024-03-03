@@ -1,5 +1,5 @@
 import { BackIcon } from "../../assets/icons/BackIcon";
-import { TEXT } from "../../assets/text/text";
+import { TEXT } from "../../constants/text";
 import { MobileTravelItem } from "../../components/MobileTravelItem/MobileTravelItem";
 import {
   savedContainer,
