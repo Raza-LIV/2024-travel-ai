@@ -1,4 +1,6 @@
 export const TEXT = {
+    WELCOME: "Welcome, ",
+    USER: "Andrew Williams",
     GENERATION: "Generation",
     GENERATION_DESCRIPTION: "This tab allows you to create and manage new travel itineraries. Here, you can input your preferences, such as the city and country you want to explore, the duration of your stay, and your interests. The system will generate a personalized travel route for you based on the provided inputs.",
     SAVED: "Saved Travels",

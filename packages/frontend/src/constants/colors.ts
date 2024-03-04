@@ -6,5 +6,8 @@ export const COLORS = {
         60 :"rgba(25, 25, 112, 0.6)",
     },
     SECONDARY: "#FFFFFF",
-    ERROR: "#FF0000"
+    ERROR: "#FF0000",
+    BLACK_OPAQUE: {
+        50: "rgba(0, 0, 0, 0.5)"
+    }
 }
