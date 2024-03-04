@@ -5,5 +5,6 @@ export const COLORS = {
         50 :"rgba(25, 25, 112, 0.5)",
         60 :"rgba(25, 25, 112, 0.6)",
     },
-    SECONDARY: "#FFFFFF"
+    SECONDARY: "#FFFFFF",
+    ERROR: "#FF0000"
 }

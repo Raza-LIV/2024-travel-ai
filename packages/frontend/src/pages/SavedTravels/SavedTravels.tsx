@@ -1,5 +1,5 @@
 import { BackIcon } from "../../assets/icons/BackIcon";
-import { TEXT } from "../../assets/text/text";
+import { TEXT } from "../../constants/text";
 import { MobileTravelItem } from "../../components/MobileTravelItem/MobileTravelItem";
 import {
   savedContainer,
@@ -8,6 +8,8 @@ import {
   travels,
 } from "./SavedTravels.styled";
 import paris from "../../assets/icons/Paris.png";
+import london from "../../assets/icons/London.png";
+import add from "../../assets/icons/AddTravel.png";
 
 export const SavedTravels = () => {
   // const { windowSize } = useGetWidth();
@@ -31,12 +33,14 @@ export const SavedTravels = () => {
           isFirst={false}
           isAdd={false}
           generatedTravelText="Begin your day with a visit to the British Museum, where you can explore a vast collection of world art and artifacts, including the Rosetta Stone and the Elgin Marbles. After your museum visit, take a leisurely stroll along the River Thames..."
+          flagTravel={london}
         />
         <MobileTravelItem
           label="Add new travel"
           isFirst={false}
           isAdd={true}
           generatedTravelText="Create new travel itineraries. Here, you can input your preferences, such as the city and country you want to explore, the duration of your stay, and your interests. The system will generate a personalized travel route for you based on the provided inputs."
+          flagTravel={add}
         />
       </div>
     </div>
