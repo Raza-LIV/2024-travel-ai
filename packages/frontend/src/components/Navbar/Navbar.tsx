@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavbarActive } from "../../store/isNavbarOpen";
 import { css } from "@emotion/css";
-import { NavItem } from "../NavbarItem/NavItem.1";
+import { NavItem } from "../NavbarItem/NavItem";
 import { TEXT } from "../../constants/text";
 import { navbarContainer } from "./Navbar.styled";
 import { GenerationIcon } from "../../assets/icons/GenerationIcon";
