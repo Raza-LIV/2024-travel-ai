@@ -6,5 +6,5 @@ export const navbarContainer = css`
     justify-content: flex-start;
     height: 100%;
     background-color: yellow;
-    transition-duration: 300ms;
+    transition-duration: 100ms;
 `
