@@ -9,6 +9,7 @@ import {
   iconWrapper,
   label,
   labelHolder,
+  navOpenedContainer,
 } from "./NavItem.styled";
 
 interface IProps {
@@ -31,7 +32,7 @@ export const NavItem = ({ title, text, icon }: IProps) => {
   return (
     <div>
       {isNavbarOpen ? (
-        <div>
+        <div className={navOpenedContainer}>
           <div className={labelHolder}>
             <div className={label}>{title}</div>
             <div onClick={handleOpen} className={iconWrapper}>
