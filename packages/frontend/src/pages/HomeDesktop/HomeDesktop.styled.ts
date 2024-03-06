@@ -1,12 +1,9 @@
 import { css } from "@emotion/css";
-import { COLORS } from "../../../constants/colors";
+import { COLORS } from "../../constants/colors";
 
 export const container = css`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
 `;
 export const content = css`
   width: 100%;
@@ -42,9 +39,6 @@ export const menu = css`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 20px 0 0 0;
-`;
-export const itemHolder = css`
-  width: 48%;
-  margin: 12px 0;
+  padding: 20px 0 0 0;
+  gap: 20px;
 `;
