@@ -8,6 +8,7 @@ export const navbarContainer = css`
   height: 100%;
   transition-duration: 300ms;
   background-color: ${COLORS.SECONDARY};
+  pointer-events: all;
 `;
 
 export const componentContainer = css`
@@ -15,8 +16,9 @@ export const componentContainer = css`
   transition-duration: 300ms;
   height: 100%;
   position: absolute;
+  z-index: 10;
   left: 0;
   top: 0;
-  z-index: 10;
   display: flex;
+  pointer-events: none;
 `;

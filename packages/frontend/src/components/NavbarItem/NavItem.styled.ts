@@ -7,7 +7,7 @@ export const labelHolder = css`
   align-items: center;
   height: 70px;
   width: 100%;
-  padding: 0 10px 0 16px;
+  padding: 0 10px 0 0;
 `;
 
 export const iconContainer = css`
@@ -23,6 +23,12 @@ export const iconWrapper = css`
 `;
 
 export const label = css`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 16px;
+  height: 100%;
+  flex-grow: 1;
   text-overflow: clip;
   overflow: hidden;
   white-space: nowrap;
@@ -38,4 +44,10 @@ export const description = css`
 
 export const navOpenedContainer = css`
   min-width: 70px;
+  cursor: pointer;
+  transition-duration: 300ms;
+  background-color: ${COLORS.SECONDARY};
+  &:hover {
+    filter: brightness(0.9);
+  }
 `;

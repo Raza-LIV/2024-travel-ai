@@ -11,14 +11,17 @@ import {
   labelHolder,
   navOpenedContainer,
 } from "./NavItem.styled";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   title: string;
   text: string;
   icon: ReactNode;
+  nav: string;
 }
 
-export const NavItem = ({ title, text, icon }: IProps) => {
+export const NavItem = ({ title, text, icon, nav }: IProps) => {
+  const navigate = useNavigate();
   const { isNavbarOpen } = useNavbarActive();
   const [isActive, setIsActive] = useState<boolean>(false);
   const handleOpen = () => {
@@ -34,7 +37,9 @@ export const NavItem = ({ title, text, icon }: IProps) => {
       {isNavbarOpen ? (
         <div className={navOpenedContainer}>
           <div className={labelHolder}>
-            <div className={label}>{title}</div>
+            <div className={label} onClick={() => navigate(nav)}>
+              {title}
+            </div>
             <div onClick={handleOpen} className={iconWrapper}>
               {isActive ? (
                 <HideIcon size={ICON_SIZE[30]} />
