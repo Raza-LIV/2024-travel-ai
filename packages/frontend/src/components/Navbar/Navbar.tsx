@@ -10,7 +10,7 @@ import { SavedIcon } from "../../assets/icons/SavedTravels";
 import { FavoritesIcon } from "../../assets/icons/FavoritesIcon";
 import { SettingsIcon } from "../../assets/icons/SettingsIcon";
 import { COLORS } from "../../constants/colors";
-import { ROUTES } from "../../constants/roures";
+import { ENavbarOptions, ROUTES } from "../../constants/roures";
 
 export const Navbar = () => {
   const { isNavbarOpen, setIsNavbarOpen, setIsNavbarClose } = useNavbarActive();
@@ -28,28 +28,40 @@ export const Navbar = () => {
         className={css(navbarContainer, `width: ${isNavbarOpen ? 290 : 70}px`)}
       >
         <NavItem
-          title={TEXT.GENERATION}
-          text={TEXT.GENERATION_DESCRIPTION}
-          icon={<GenerationIcon isPrimaryColor size={ICON_SIZE[50]} />}
-          nav={ROUTES.GENERATION}
+          content={{
+            title: TEXT.GENERATION,
+            text: TEXT.GENERATION_DESCRIPTION,
+            icon: <GenerationIcon isPrimaryColor size={ICON_SIZE[50]} />,
+            nav: ROUTES.GENERATION,
+            routeName: ENavbarOptions.GENERATION,
+          }}
         />
         <NavItem
-          title={TEXT.SAVED}
-          text={TEXT.SAVED_DESCRIPTION}
-          icon={<SavedIcon isPrimaryColor size={ICON_SIZE[50]} />}
-          nav={ROUTES.SAVED}
+          content={{
+            title: TEXT.SAVED,
+            text: TEXT.SAVED_DESCRIPTION,
+            icon: <SavedIcon isPrimaryColor size={ICON_SIZE[50]} />,
+            nav: ROUTES.SAVED,
+            routeName: ENavbarOptions.SAVED,
+          }}
         />
         <NavItem
-          title={TEXT.FAVORITES}
-          text={TEXT.FAVORITES_DESCRIPTION}
-          icon={<FavoritesIcon isPrimaryColor size={ICON_SIZE[50]} />}
-          nav={ROUTES.TRAVEL}
+          content={{
+            title: TEXT.FAVORITES,
+            text: TEXT.FAVORITES_DESCRIPTION,
+            icon: <FavoritesIcon isPrimaryColor size={ICON_SIZE[50]} />,
+            nav: ROUTES.FAVORITES,
+            routeName: ENavbarOptions.FAVORITES,
+          }}
         />
         <NavItem
-          title={TEXT.SETTINGS}
-          text={TEXT.SETTINGS_DESCRIPTION}
-          icon={<SettingsIcon isPrimaryColor size={ICON_SIZE[50]} />}
-          nav={ROUTES.SETTINGS}
+          content={{
+            title: TEXT.SETTINGS,
+            text: TEXT.SETTINGS_DESCRIPTION,
+            icon: <SettingsIcon isPrimaryColor size={ICON_SIZE[50]} />,
+            nav: ROUTES.SETTINGS,
+            routeName: ENavbarOptions.SETTINGS,
+          }}
         />
       </div>
     </div>

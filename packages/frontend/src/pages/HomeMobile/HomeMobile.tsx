@@ -44,7 +44,7 @@ export const HomeMobile = () => {
             description={TEXT.FAVORITES_DESCRIPTION}
             label={TEXT.FAVORITES}
             isPrimary={false}
-            nav={ROUTES.TRAVEL}
+            nav={ROUTES.FAVORITES}
           />
           <MobileHomeItem
             icon={<SettingsIcon isPrimaryColor={true} size={ICON_SIZE[40]} />}

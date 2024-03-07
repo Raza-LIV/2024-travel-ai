@@ -11,22 +11,36 @@ import {
   labelHolder,
   navOpenedContainer,
 } from "./NavItem.styled";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { css } from "@emotion/css";
+import { COLORS } from "../../constants/colors";
+import { ENavbarOptions } from "../../constants/roures";
 
-interface IProps {
+interface ICurrentItem {
   title: string;
   text: string;
   icon: ReactNode;
   nav: string;
+  routeName: ENavbarOptions;
 }
 
-export const NavItem = ({ title, text, icon, nav }: IProps) => {
+interface IProps {
+  content: ICurrentItem;
+}
+
+export const NavItem = ({ content }: IProps) => {
   const navigate = useNavigate();
   const { isNavbarOpen } = useNavbarActive();
   const [isActive, setIsActive] = useState<boolean>(false);
   const handleOpen = () => {
     setIsActive((prev) => !prev);
   };
+
+  const param = useLocation();
+  console.log(param.pathname);
+
+  console.log(param.pathname, content.routeName);
+
   useEffect(() => {
     if (!isNavbarOpen) {
       setIsActive(false);
@@ -35,10 +49,21 @@ export const NavItem = ({ title, text, icon, nav }: IProps) => {
   return (
     <div>
       {isNavbarOpen ? (
-        <div className={navOpenedContainer}>
+        <div
+          className={css(
+            navOpenedContainer,
+            param.pathname === content.routeName &&
+              `border-right: 3px solid ${COLORS.PRIMARY}`
+          )}
+        >
           <div className={labelHolder}>
-            <div className={label} onClick={() => navigate(nav)}>
-              {title}
+            <div
+              className={label}
+              onClick={() => {
+                navigate(content.nav);
+              }}
+            >
+              {content.title}
             </div>
             <div onClick={handleOpen} className={iconWrapper}>
               {isActive ? (
@@ -48,10 +73,18 @@ export const NavItem = ({ title, text, icon, nav }: IProps) => {
               )}
             </div>
           </div>
-          {isActive && <div className={description}>{text}</div>}
+          {isActive && <div className={description}>{content.text}</div>}
         </div>
       ) : (
-        <div className={iconContainer}>{icon}</div>
+        <div
+          className={css(
+            iconContainer,
+            param.pathname === content.routeName &&
+              `border-right: 3px solid ${COLORS.PRIMARY}`
+          )}
+        >
+          {content.icon}
+        </div>
       )}
     </div>
   );
