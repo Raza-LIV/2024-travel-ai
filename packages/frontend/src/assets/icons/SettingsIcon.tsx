@@ -1,11 +1,7 @@
 import { COLORS } from "../../constants/colors";
+import { ICurrentIcon } from "../../types/icon.types";
 
-interface IProps {
-  isPrimaryColor: boolean;
-  size: string;
-}
-
-export const SettingsIcon = ({ isPrimaryColor, size }: IProps) => {
+export const SettingsIcon = ({ isPrimaryColor, size }: ICurrentIcon) => {
   const color = isPrimaryColor ? COLORS.PRIMARY : COLORS.SECONDARY;
   return (
     <svg

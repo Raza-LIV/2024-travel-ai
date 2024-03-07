@@ -14,7 +14,7 @@ import {
   labelColor,
   addContainer,
 } from "./MobileTravelItem.styled";
-import { AddTravelIcon } from "../../assets/icons/AddTravel";
+import { AddTravelIcon } from "../../assets/icons/AddTravelIcon";
 import { ICON_SIZE } from "../../constants/iconSize";
 
 interface IProps {

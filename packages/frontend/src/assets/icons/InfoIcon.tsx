@@ -1,10 +1,7 @@
 import React from "react";
+import { ICurrentIcon } from "../../types/icon.types";
 
-interface IProps {
-  size: string;
-}
-
-export const InfoIcon = ({ size }: IProps) => {
+export const InfoIcon = ({ size }: ICurrentIcon) => {
   return (
     <svg
       width={size}

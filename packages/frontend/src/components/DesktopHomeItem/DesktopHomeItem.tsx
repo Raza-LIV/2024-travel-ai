@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import { useNavigate } from "react-router-dom";
 import {
   cardDescriptionPrimary,
@@ -10,14 +8,7 @@ import {
   desktopHomeItemContainerPrimary,
   desktopHomeItemContainerSecondary,
 } from "./DesktopHomeItem.styled";
-
-interface IProps {
-  label: string;
-  icon: ReactNode;
-  description: string;
-  isPrimary: boolean;
-  nav: string;
-}
+import { ICurrentHomeItem } from "../../types/home.types";
 
 export const DesktopHomeItem = ({
   icon,
@@ -25,7 +16,7 @@ export const DesktopHomeItem = ({
   label,
   isPrimary,
   nav,
-}: IProps) => {
+}: ICurrentHomeItem) => {
   const navigate = useNavigate();
   return (
     <div

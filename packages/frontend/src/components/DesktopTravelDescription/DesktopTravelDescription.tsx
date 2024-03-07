@@ -7,10 +7,10 @@ import {
   descriptionContainer,
 } from "./DesktopTravelDescription.styled";
 import { css } from "@emotion/css";
-import { ConcreteTravel } from "../../pages/SavedTravelsDesktop/SavedTravelsDesktop";
+import { ICurrentTravel } from "../../pages/SavedTravelsDesktop/SavedTravelsDesktop";
 
 interface IProps {
-  travelDescription: ConcreteTravel;
+  travelDescription: ICurrentTravel;
 }
 
 export const DesktopTravelDescription = ({ travelDescription }: IProps) => {

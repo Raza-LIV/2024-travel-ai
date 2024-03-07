@@ -14,7 +14,7 @@ import { DesktopTravelItem } from "../../components/DesktopTravelItem/DesktopTra
 import london from "../../assets/icons/London.png";
 import paris from "../../assets/icons/Paris.png";
 
-export interface ConcreteTravel {
+export interface ICurrentTravel {
   city: string;
   text: string;
   flag: string;
@@ -23,19 +23,19 @@ export interface ConcreteTravel {
 export const SavedTravelsDesktop = () => {
   const { isNavbarOpen } = useNavbarActive();
 
-  const travelToLondon: ConcreteTravel = {
+  const travelToLondon: ICurrentTravel = {
     city: TEXT.LONDON,
     text: TEXT.LONDON_DESCRIPTION,
     flag: london,
   };
 
-  const travelToParis: ConcreteTravel = {
+  const travelToParis: ICurrentTravel = {
     city: TEXT.PARIS,
     text: TEXT.PARIS_DESCRIPTION,
     flag: paris,
   };
 
-  const mockArr: ConcreteTravel[] = [
+  const mockArr: ICurrentTravel[] = [
     travelToLondon,
     travelToParis,
     travelToParis,

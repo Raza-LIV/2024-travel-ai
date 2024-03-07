@@ -8,14 +8,14 @@ import {
   addNewTravelText,
 } from "./DesktopTravelItem.styled";
 import { DesktopTravelDescription } from "../DesktopTravelDescription/DesktopTravelDescription";
-import { ConcreteTravel } from "../../pages/SavedTravelsDesktop/SavedTravelsDesktop";
+import { ICurrentTravel } from "../../pages/SavedTravelsDesktop/SavedTravelsDesktop";
 import { css } from "@emotion/css";
 import { ICON_SIZE } from "../../constants/iconSize";
 import { TEXT } from "../../constants/text";
-import { AddTravelIcon } from "../../assets/icons/AddTravel";
+import { AddTravelIcon } from "../../assets/icons/AddTravelIcon";
 
 interface IProps {
-  travel?: ConcreteTravel;
+  travel?: ICurrentTravel;
   ownIndex: number;
 }
 
