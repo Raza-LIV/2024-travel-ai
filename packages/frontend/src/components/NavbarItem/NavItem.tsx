@@ -37,10 +37,6 @@ export const NavItem = ({ content }: IProps) => {
   };
 
   const param = useLocation();
-  console.log(param.pathname);
-
-  console.log(param.pathname, content.routeName);
-
   useEffect(() => {
     if (!isNavbarOpen) {
       setIsActive(false);
