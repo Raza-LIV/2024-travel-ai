@@ -20,4 +20,14 @@ export const TEXT = {
   PARIS_DESCRIPTION:
     "Start your day with a visit to the Louvre Museum, home to thousands of artworks including the famous Mona Lisa. Afterward, take a stroll along the Seine River and enjoy the views of iconic landmarks like the Notre-Dame Cathedral and the Eiffel Tower...",
   ADD_TRAVEL: "Add new travel",
+
+  GENERATION_PAGE_CREATE:
+    "Please specify the country, state, and city you would like to explore",
+  GENERATION_PAGE_DESCRIPTION:
+    "Knowing your desired destination will enable us to create a travel itinerary that focuses on the unique attractions, landmarks, and experiences available in that specific location. Whether it's the bustling streets of a vibrant city or the serene landscapes of a picturesque town, we'll ensure your itinerary is designed to make the most of your chosen destination",
+  NEXT_STEP: "Next step",
+
+  GENERATION_STEP_DAYS: "Please provide your preferred travel date",
+  GENERATION_STEP_DAYS_DESCRIPTION:
+    "Knowing your preferred dates will help us plan your itinerary accordingly and consider any special events happening during that time",
 };
