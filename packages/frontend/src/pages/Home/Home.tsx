@@ -1,6 +1,6 @@
 import { useGetWidth } from "../../hooks/get-width.hook";
-import { HomeDesktop } from "./HomeDesktop/HomeDesktop";
-import { HomeMobile } from "./HomeMobile/HomeMobile";
+import { HomeDesktop } from "../HomeDesktop/HomeDesktop";
+import { HomeMobile } from "../HomeMobile/HomeMobile";
 
 export const Home = () => {
   const { windowSize } = useGetWidth();

@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
 import { CorrectIcon } from "./CorrectIcon";
 import { QuestIcon } from "./QuestIIcon";
+import { IStepIcon } from "../../types/icon.types";
 
 export enum EStepperIconState {
   CURRENT = "current",
@@ -8,12 +8,7 @@ export enum EStepperIconState {
   UNKNOWN = "unknown",
 }
 
-interface IProps {
-  icon: ReactNode;
-  state: EStepperIconState;
-}
-
-export const StepIcon = ({ icon, state }: IProps) => {
+export const StepIcon = ({ icon, state }: IStepIcon) => {
   const chooseIcon = () => {
     if (state === EStepperIconState.PASSED) return <CorrectIcon />;
     if (state === EStepperIconState.CURRENT) return icon;

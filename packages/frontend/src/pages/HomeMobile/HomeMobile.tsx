@@ -1,9 +1,9 @@
-import { FavoritesIcon } from "../../../assets/icons/FavoritesIcon";
-import { GenerationIcon } from "../../../assets/icons/GenerationIcon";
-import { SettingsIcon } from "../../../assets/icons/SettingsIcon";
-import { SavedIcon } from "../../../assets/icons/SavedTravels";
-import { TEXT } from "../../../constants/text";
-import { MobileHomeItem } from "../../../components/MobileHomeItem/MobileHomeItem";
+import { FavoritesIcon } from "../../assets/icons/FavoritesIcon";
+import { GenerationIcon } from "../../assets/icons/GenerationIcon";
+import { SettingsIcon } from "../../assets/icons/SettingsIcon";
+import { SavedIcon } from "../../assets/icons/SavedTravels";
+import { TEXT } from "../../constants/text";
+import { MobileHomeItem } from "../../components/MobileHomeItem/MobileHomeItem";
 import {
   homeContainer,
   navigationMenu,
@@ -11,8 +11,8 @@ import {
   userName,
   itemsHolder,
 } from "./HomeMobile.styled";
-import { ROUTES } from "../../../constants/roures";
-import { ICON_SIZE } from "../../../constants/iconSize";
+import { ROUTES } from "../../constants/roures";
+import { ICON_SIZE } from "../../constants/iconSize";
 
 export const HomeMobile = () => {
   return (
@@ -44,7 +44,7 @@ export const HomeMobile = () => {
             description={TEXT.FAVORITES_DESCRIPTION}
             label={TEXT.FAVORITES}
             isPrimary={false}
-            nav={ROUTES.TRAVEL}
+            nav={ROUTES.FAVORITES}
           />
           <MobileHomeItem
             icon={<SettingsIcon isPrimaryColor={true} size={ICON_SIZE[40]} />}

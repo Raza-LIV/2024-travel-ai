@@ -12,7 +12,10 @@ import {
   add,
   textColor,
   labelColor,
+  addContainer,
 } from "./MobileTravelItem.styled";
+import { AddTravelIcon } from "../../assets/icons/AddTravelIcon";
+import { ICON_SIZE } from "../../constants/iconSize";
 
 interface IProps {
   isFirst: boolean;
@@ -29,12 +32,6 @@ export const MobileTravelItem = ({
   generatedTravelText,
   flagTravel,
 }: IProps) => {
-  const chooseFlag: React.CSSProperties = {
-    backgroundImage: `url(${flagTravel})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  };
-
   return (
     <div
       className={css([
@@ -43,12 +40,18 @@ export const MobileTravelItem = ({
         isAdd ? add : notAdd,
       ])}
     >
-      <div className={flag} style={chooseFlag}></div>
+      {flagTravel ? (
+        <div className={css(flag, `background-image: url(${flagTravel})`)} />
+      ) : (
+        <div className={addContainer}>
+          <AddTravelIcon size={ICON_SIZE[70]} />
+        </div>
+      )}
       <div className={content}>
-        <div className={css([isAdd ? addColor : labelColor, labelTravel])}>
+        <div className={css(isAdd ? addColor : labelColor, labelTravel)}>
           {label}
         </div>
-        <div className={css([isAdd ? addColor : textColor, generatedTravel])}>
+        <div className={css(isAdd ? addColor : textColor, generatedTravel)}>
           {generatedTravelText}
         </div>
       </div>

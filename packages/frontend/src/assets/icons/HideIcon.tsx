@@ -1,10 +1,7 @@
 import React from "react";
+import { ICurrentIcon } from "../../types/icon.types";
 
-interface IProps {
-  size: string;
-}
-
-export const HideIcon = ({ size }: IProps) => {
+export const HideIcon = ({ size }: ICurrentIcon) => {
   return (
     <svg
       width={size}

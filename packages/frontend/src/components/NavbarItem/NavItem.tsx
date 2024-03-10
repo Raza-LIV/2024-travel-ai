@@ -1,43 +1,90 @@
-import React, { ReactNode } from "react";
-import { openedItem } from "./NavItem.styled";
+import React, { ReactNode, useEffect, useState } from "react";
 import { InfoIcon } from "../../assets/icons/InfoIcon";
 import { ICON_SIZE } from "../../constants/iconSize";
 import { HideIcon } from "../../assets/icons/HideIcon";
-import { TEXT } from "../../constants/text";
 import { useNavbarActive } from "../../store/isNavbarOpen";
+import {
+  description,
+  iconContainer,
+  iconWrapper,
+  label,
+  labelHolder,
+  navOpenedContainer,
+} from "./NavItem.styled";
+import { useLocation, useNavigate } from "react-router-dom";
 import { css } from "@emotion/css";
+import { COLORS } from "../../constants/colors";
+import { ENavbarOptions } from "../../constants/roures";
 
-interface IProps {
+interface ICurrentItem {
   title: string;
   text: string;
-  isActive: boolean;
   icon: ReactNode;
-  setIsActive: () => void;
+  nav: string;
+  routeName: ENavbarOptions;
 }
 
-export const NavItem = ({
-  title,
-  text,
-  isActive,
-  icon,
-  setIsActive,
-}: IProps) => {
+interface IProps {
+  content: ICurrentItem;
+}
+
+export const NavItem = ({ content }: IProps) => {
+  const navigate = useNavigate();
   const { isNavbarOpen } = useNavbarActive();
+  const [isActive, setIsActive] = useState<boolean>(false);
   const handleOpen = () => {
-    setIsActive();
+    setIsActive((prev) => !prev);
   };
+
+  const param = useLocation();
+  console.log(param.pathname);
+
+  console.log(param.pathname, content.routeName);
+
+  useEffect(() => {
+    if (!isNavbarOpen) {
+      setIsActive(false);
+    }
+  }, [isNavbarOpen]);
   return (
     <div>
       {isNavbarOpen ? (
-        <div>
-          <div>
-            <div>{title}</div>
-            <div onClick={handleOpen}>icon</div>
+        <div
+          className={css(
+            navOpenedContainer,
+            param.pathname === content.routeName &&
+              `border-right: 3px solid ${COLORS.PRIMARY}`
+          )}
+        >
+          <div className={labelHolder}>
+            <div
+              className={label}
+              onClick={() => {
+                navigate(content.nav);
+              }}
+            >
+              {content.title}
+            </div>
+            <div onClick={handleOpen} className={iconWrapper}>
+              {isActive ? (
+                <HideIcon size={ICON_SIZE[30]} />
+              ) : (
+                <InfoIcon size={ICON_SIZE[30]} />
+              )}
+            </div>
           </div>
-          {isActive && <div>{text}</div>}
+          {isActive && <div className={description}>{content.text}</div>}
         </div>
       ) : (
-        <div>{icon}</div>
+        <div
+          className={css(
+            iconContainer,
+            param.pathname === content.routeName &&
+              `border-right: 3px solid ${COLORS.PRIMARY}`
+          )}
+        >
+          {content.icon}
+        </div>
       )}
     </div>
   );
