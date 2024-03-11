@@ -43,7 +43,7 @@ export const questionBlock = css`
 
 export const mainQuestion = css`
   width: 100%;
-  height: 29px;
+  height: 30px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -54,7 +54,6 @@ export const mainQuestion = css`
 
 export const description = css`
   width: 100%;
-  height: 51px;
   padding: 0 0 0 10px;
   font-size: 12px;
   color: ${COLORS.PRIMARY_OPAQUE[60]};

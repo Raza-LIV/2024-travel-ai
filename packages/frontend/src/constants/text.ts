@@ -23,11 +23,15 @@ export const TEXT = {
 
   GENERATION_PAGE_CREATE:
     "Please specify the country, state, and city you would like to explore",
-  GENERATION_PAGE_DESCRIPTION:
+  GENERATION_PAGE_CREATE_DESCRIPTION:
     "Knowing your desired destination will enable us to create a travel itinerary that focuses on the unique attractions, landmarks, and experiences available in that specific location. Whether it's the bustling streets of a vibrant city or the serene landscapes of a picturesque town, we'll ensure your itinerary is designed to make the most of your chosen destination",
   NEXT_STEP: "Next step",
 
   GENERATION_STEP_DAYS: "Please provide your preferred travel date",
   GENERATION_STEP_DAYS_DESCRIPTION:
     "Knowing your preferred dates will help us plan your itinerary accordingly and consider any special events happening during that time",
+
+  GENERATION_STEP_DURATION: "How many days do you plan to spend in there?",
+  GENERATION_STEP_DURATION_DESCRIPTION:
+    "Knowing the duration of your stay will help us optimize your itinerary and recommend the best activities and attractions within the given timeframe",
 };

@@ -17,12 +17,14 @@ import { GenerateLocationStep } from "../../components/GenerateLocationStep/Gene
 import { GenerationDaysStep } from "../../components/GenerationDaysStep/GenerationDaysStep";
 import { useFormik } from "formik";
 import dayjs, { Dayjs } from "dayjs";
+import { GenerationDurationStep } from "../../components/GenerationDurationStep/GenerationDurationStep";
 
 export interface IValues {
   country: string;
   state: string;
   city: string;
   date: dayjs.Dayjs;
+  duration: number | null;
 }
 
 export const GenerationDesktop = () => {
@@ -32,6 +34,7 @@ export const GenerationDesktop = () => {
     state: "",
     city: "",
     date: dayjs("2022-04-17"),
+    duration: null,
   };
 
   const { values, handleChange, handleSubmit, setFieldValue } = useFormik({
@@ -56,19 +59,25 @@ export const GenerationDesktop = () => {
             <div className={questionBlock}>
               <div className={mainQuestion}>
                 {/* {TEXT.GENERATION_PAGE_CREATE} */}
-                {TEXT.GENERATION_STEP_DAYS}
+                {/* {TEXT.GENERATION_STEP_DAYS} */}
+                {TEXT.GENERATION_STEP_DURATION}
               </div>
               <div className={description}>
-                {/* {TEXT.GENERATION_PAGE_DESCRIPTION} */}
-                {TEXT.GENERATION_STEP_DAYS_DESCRIPTION}
+                {/* {TEXT.GENERATION_PAGE_CREATE_DESCRIPTION} */}
+                {/* {TEXT.GENERATION_STEP_DAYS_DESCRIPTION} */}
+                {TEXT.GENERATION_STEP_DURATION_DESCRIPTION}
               </div>
               <form onSubmit={handleSubmit}>
-                <GenerateLocationStep
+                {/* <GenerateLocationStep
                   handleChange={handleChange}
                   values={values}
-                />
+                /> */}
                 <GenerationDaysStep
                   setFieldValue={setFieldValue}
+                  values={values}
+                />
+                <GenerationDurationStep
+                  handleChange={handleChange}
                   values={values}
                 />
               </form>
