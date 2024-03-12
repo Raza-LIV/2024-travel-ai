@@ -10,6 +10,7 @@ import { COLORS } from "../../constants/colors";
 import { Button } from "@mui/material";
 import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import { FormikErrors } from "formik";
+import { useStepperNumber } from "../../store/stepNumber";
 
 interface IProps {
   setFieldValue: (
@@ -17,16 +18,20 @@ interface IProps {
     value: any,
     shouldValidate?: boolean | undefined
   ) => Promise<void> | Promise<FormikErrors<IValues>>;
-  values: IValues;
+  // values: IValues;
 }
 
-export const GenerationDaysStep = ({ setFieldValue, values }: IProps) => {
+export const GenerationDaysStep = ({
+  setFieldValue,
+}: // values
+IProps) => {
+  const { incStepNumber } = useStepperNumber();
   return (
     <div className={calendarContainer}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           onChange={(newValue) => setFieldValue("date", newValue)}
-          value={values.date}
+          // value={values.date}
           sx={{
             border: `1px solid ${COLORS.PRIMARY_OPAQUE[60]}`,
             borderRadius: "10px",
@@ -36,6 +41,7 @@ export const GenerationDaysStep = ({ setFieldValue, values }: IProps) => {
       <div className={submitContainer}>
         <Button
           variant="outlined"
+          onClick={incStepNumber}
           style={{
             borderRadius: "10px",
             backgroundColor: COLORS.PRIMARY,
@@ -46,7 +52,6 @@ export const GenerationDaysStep = ({ setFieldValue, values }: IProps) => {
             margin: "20px 0 0 0",
           }}
           fullWidth
-          type="submit"
         >
           Next step
         </Button>

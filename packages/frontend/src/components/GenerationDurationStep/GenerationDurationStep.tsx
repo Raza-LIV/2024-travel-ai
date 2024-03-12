@@ -3,6 +3,7 @@ import { Button, TextField } from "@mui/material";
 import { COLORS } from "../../constants/colors";
 import { submitContainer, container } from "./GenerationDurationStep.styled";
 import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
+import { useStepperNumber } from "../../store/stepNumber";
 
 interface IProps {
   handleChange: any;
@@ -10,6 +11,7 @@ interface IProps {
 }
 
 export const GenerationDurationStep = ({ handleChange, values }: IProps) => {
+  const { incStepNumber } = useStepperNumber();
   return (
     <div className={container}>
       <TextField
@@ -54,6 +56,7 @@ export const GenerationDurationStep = ({ handleChange, values }: IProps) => {
       <div className={submitContainer}>
         <Button
           variant="outlined"
+          onClick={incStepNumber}
           style={{
             borderRadius: "10px",
             backgroundColor: COLORS.PRIMARY,

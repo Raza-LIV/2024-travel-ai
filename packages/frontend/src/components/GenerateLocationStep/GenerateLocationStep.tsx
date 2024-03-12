@@ -8,6 +8,7 @@ import { CountrySelector } from "../CountrySelector/CountrySelector";
 import { Button } from "@mui/material";
 import { COLORS } from "../../constants/colors";
 import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
+import { useStepperNumber } from "../../store/stepNumber";
 
 interface IProps {
   handleChange: any;
@@ -15,6 +16,7 @@ interface IProps {
 }
 
 export const GenerateLocationStep = ({ handleChange, values }: IProps) => {
+  const { incStepNumber } = useStepperNumber();
   return (
     <div className={container}>
       <div className={inputConteiner}>
@@ -34,6 +36,7 @@ export const GenerateLocationStep = ({ handleChange, values }: IProps) => {
       <div className={submitContainer}>
         <Button
           variant="outlined"
+          onClick={incStepNumber}
           style={{
             borderRadius: "10px",
             backgroundColor: COLORS.PRIMARY,

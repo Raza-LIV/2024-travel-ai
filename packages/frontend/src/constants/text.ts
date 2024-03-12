@@ -34,4 +34,22 @@ export const TEXT = {
   GENERATION_STEP_DURATION: "How many days do you plan to spend in there?",
   GENERATION_STEP_DURATION_DESCRIPTION:
     "Knowing the duration of your stay will help us optimize your itinerary and recommend the best activities and attractions within the given timeframe",
+  GENERATION_STEP_FOOD:
+    "Are you interested in exploring the local cuisine and dining options?",
+  GENERATION_STEP_FOOD_DESCRIPTION:
+    "Let us know if you have any dietary preferences or restrictions so we can suggest the perfect restaurants to enhance your gastronomic experience during your trip",
+  GENERATION_STEP_ART:
+    "Are you interested in immersing yourself in the art and history of this places?",
+  GENERATION_STEP_ART_DESCRIPTION:
+    "Knowing your interest in art and history will allow us to include museums, landmarks, and cultural sites that align with your preferences in your personalized itinerary",
+  CHOOSE_YES: "YES, PLEASE",
+  CHOOSE_NO: "NO, THANKS",
+  STEP_FOOD_CHOOSE_YES:
+    "We will recommend you restaurants, fast foods or cuisine and dining options. You could change this option later on",
+  STEP_FOOD_CHOOSE_NO:
+    "We will not recommend you any restaurants, fast foods or cuisine and dining options. You could change this option later on",
+  STEP_ART_CHOOSE_YES:
+    "We will recommend you museums, theaters or excursion options. You could change this option later on",
+  STEP_ART_CHOOSE_NO:
+    "We will not recommend you any museums, theaters or excursion  options. You could change this option later on",
 };
