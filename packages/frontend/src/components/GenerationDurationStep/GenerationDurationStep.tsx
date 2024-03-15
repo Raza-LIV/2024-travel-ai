@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { COLORS } from "../../constants/colors";
 import { submitContainer, container } from "./GenerationDurationStep.styled";
@@ -12,6 +12,22 @@ interface IProps {
 
 export const GenerationDurationStep = ({ handleChange, values }: IProps) => {
   const { incStepNumber } = useStepperNumber();
+  const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
+  const handleClick = () => {
+    if (values.duration === null) {
+      return false;
+    }
+    if (values.duration < 1) {
+      return false;
+    }
+    if (Number.isInteger(values.duration) !== true) {
+      return false;
+    }
+    return true;
+  };
+  useEffect(() => {
+    setButtonVisibility(handleClick());
+  }, [values.duration]);
   return (
     <div className={container}>
       <TextField
@@ -64,7 +80,9 @@ export const GenerationDurationStep = ({ handleChange, values }: IProps) => {
             width: "275px",
             height: "45px",
             fontSize: "16px",
+            opacity: buttonVisibility ? 1 : 0.6,
           }}
+          disabled={!buttonVisibility}
           fullWidth
           type="button"
         >

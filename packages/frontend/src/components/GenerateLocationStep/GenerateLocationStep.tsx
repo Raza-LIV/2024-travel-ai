@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   container,
   submitContainer,
@@ -16,7 +16,24 @@ interface IProps {
 }
 
 export const GenerateLocationStep = ({ handleChange, values }: IProps) => {
+  const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
   const { incStepNumber } = useStepperNumber();
+  const { country, state, city } = values;
+  const handleClick = () => {
+    if (country === "") {
+      return false;
+    }
+    if (state === "") {
+      return false;
+    }
+    if (city === "") {
+      return false;
+    }
+    return true;
+  };
+  useEffect(() => {
+    setButtonVisibility(handleClick());
+  }, [country, state, city]);
   return (
     <div className={container}>
       <div className={inputConteiner}>
@@ -44,8 +61,10 @@ export const GenerateLocationStep = ({ handleChange, values }: IProps) => {
             width: "275px",
             height: "45px",
             fontSize: "16px",
+            opacity: buttonVisibility ? 1 : 0.6,
           }}
           fullWidth
+          disabled={!buttonVisibility}
           type="button"
         >
           Next step

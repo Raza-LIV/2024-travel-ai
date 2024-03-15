@@ -47,12 +47,19 @@ interface IPasteContent {
 }
 
 export const GenerationDesktop = () => {
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const day = String(currentDate.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
+
   const { isNavbarOpen } = useNavbarActive();
   const initialValues: IValues = {
     country: "",
     state: "",
     city: "",
-    date: dayjs("2022-04-17"),
+    date: dayjs(formattedDate),
     duration: null,
     food: null,
     art: null,
@@ -81,7 +88,8 @@ export const GenerationDesktop = () => {
       step: (
         <GenerationDaysStep
           setFieldValue={setFieldValue}
-          // values={values}
+          values={values}
+          currentDate={dayjs(formattedDate)}
         />
       ),
     },
@@ -95,7 +103,9 @@ export const GenerationDesktop = () => {
     3: {
       header: TEXT.GENERATION_STEP_FOOD,
       description: TEXT.GENERATION_STEP_FOOD_DESCRIPTION,
-      step: <GenerationFoodStep setFieldValue={setFieldValue} value={values} />,
+      step: (
+        <GenerationFoodStep setFieldValue={setFieldValue} values={values} />
+      ),
     },
     4: {
       header: TEXT.GENERATION_STEP_ART,

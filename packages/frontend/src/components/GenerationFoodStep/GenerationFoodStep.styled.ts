@@ -1,19 +1,20 @@
 import { css } from "@emotion/css";
 
 export const container = css`
+  padding: 10px 0 0 0;
   width: 100%;
-  height: 130px;
-  padding: 15px 0;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
-export const inputConteiner = css`
-  width: 100%;
-  height: 65px;
-  padding: 0 0 20px 0;
+export const choiseContainer = css`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 219px;
+  width: 388px;
 `;
 
 export const submitContainer = css`
