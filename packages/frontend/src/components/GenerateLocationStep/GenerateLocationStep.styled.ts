@@ -9,6 +9,8 @@ export const container = css`
 `;
 
 export const inputConteiner = css`
+  transition-duration: 500ms;
+  position: relative;
   width: 100%;
   height: 65px;
   padding: 0 0 20px 0;
@@ -17,6 +19,9 @@ export const inputConteiner = css`
 `;
 
 export const submitContainer = css`
+  transition-duration: 500ms;
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;

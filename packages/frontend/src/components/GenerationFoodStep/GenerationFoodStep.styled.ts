@@ -10,6 +10,7 @@ export const container = css`
 `;
 
 export const choiseContainer = css`
+  transition-duration: 500ms;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,7 +19,9 @@ export const choiseContainer = css`
 `;
 
 export const submitContainer = css`
+  transition-duration: 500ms;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px 0 0 0;
 `;

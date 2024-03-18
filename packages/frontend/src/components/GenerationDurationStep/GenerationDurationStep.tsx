@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { COLORS } from "../../constants/colors";
 import { submitContainer, container } from "./GenerationDurationStep.styled";
 import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import { useStepperNumber } from "../../store/stepNumber";
+import { css } from "@emotion/css";
+import { GenerationStepButton } from "../GenerationStepButton/GenerationStepButton";
 
 interface IProps {
   handleChange: any;
   values: IValues;
+  setAppear: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const GenerationDurationStep = ({ handleChange, values }: IProps) => {
-  const { incStepNumber } = useStepperNumber();
+export const GenerationDurationStep = ({
+  handleChange,
+  values,
+  setAppear,
+}: IProps) => {
+  const { stepNumber, incStepNumber } = useStepperNumber();
+  const [appearComponent, setAppearComponent] = useState<boolean>(false);
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
   const handleClick = () => {
     if (values.duration === null) {
@@ -25,11 +33,26 @@ export const GenerationDurationStep = ({ handleChange, values }: IProps) => {
     }
     return true;
   };
+  const buttonClickFunction = () => {
+    setAppear(false);
+    incStepNumber();
+  };
   useEffect(() => {
     setButtonVisibility(handleClick());
   }, [values.duration]);
+  useEffect(() => {
+    setAppearComponent(true);
+  }, []);
   return (
-    <div className={container}>
+    <div
+      className={css(
+        container,
+        `
+        opacity: ${appearComponent ? 1 : 0};
+        transition-delay: ${(stepNumber + 2) * 500 + 300}ms
+        `
+      )}
+    >
       <TextField
         onChange={handleChange("duration")}
         value={values.duration}
@@ -69,25 +92,22 @@ export const GenerationDurationStep = ({ handleChange, values }: IProps) => {
           },
         }}
       />
-      <div className={submitContainer}>
-        <Button
-          variant="outlined"
-          onClick={incStepNumber}
-          style={{
-            borderRadius: "10px",
-            backgroundColor: COLORS.PRIMARY,
-            color: COLORS.SECONDARY,
-            width: "275px",
-            height: "45px",
-            fontSize: "16px",
-            opacity: buttonVisibility ? 1 : 0.6,
-          }}
-          disabled={!buttonVisibility}
-          fullWidth
-          type="button"
-        >
-          Next step
-        </Button>
+      <div
+        className={css(
+          submitContainer,
+          `
+          opacity: ${appearComponent ? 1 : 0};
+          transition-delay: ${(stepNumber + 3) * 500 + 300}ms
+          `
+        )}
+      >
+        <GenerationStepButton
+          buttonVisibility={buttonVisibility}
+          text={"Next step"}
+          buttonType={"button"}
+          handleClick={buttonClickFunction}
+          setAppear={setAppear}
+        />
       </div>
     </div>
   );

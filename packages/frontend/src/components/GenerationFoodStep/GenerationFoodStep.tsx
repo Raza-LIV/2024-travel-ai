@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
-import { COLORS } from "../../constants/colors";
 import {
   container,
   submitContainer,
@@ -15,6 +13,8 @@ import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import { NoIcon } from "../../assets/icons/NoIcon";
 import { useStepperNumber } from "../../store/stepNumber";
 import { useChoise } from "../../store/choise";
+import { css } from "@emotion/css";
+import { GenerationStepButton } from "../GenerationStepButton/GenerationStepButton";
 
 interface IProps {
   setFieldValue: (
@@ -23,10 +23,16 @@ interface IProps {
     shouldValidate?: boolean | undefined
   ) => Promise<void> | Promise<FormikErrors<IValues>>;
   values: IValues;
+  setAppear: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const GenerationFoodStep = ({ setFieldValue, values }: IProps) => {
-  const { incStepNumber } = useStepperNumber();
+export const GenerationFoodStep = ({
+  setFieldValue,
+  values,
+  setAppear,
+}: IProps) => {
+  const { stepNumber, incStepNumber } = useStepperNumber();
+  const [appearComponent, setAppearComponent] = useState<boolean>(false);
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
   const { chooseNo1, chooseYes1, setChooseNo1, setChooseYes1 } = useChoise();
   const handleClick = () => {
@@ -35,12 +41,27 @@ export const GenerationFoodStep = ({ setFieldValue, values }: IProps) => {
     }
     return true;
   };
+  const buttonClickFunction = () => {
+    setAppear(false);
+    incStepNumber();
+  };
   useEffect(() => {
     setButtonVisibility(handleClick());
   }, [values.food]);
+  useEffect(() => {
+    setAppearComponent(true);
+  });
   return (
     <div className={container}>
-      <div className={choiseContainer}>
+      <div
+        className={css(
+          choiseContainer,
+          `
+          opacity: ${appearComponent ? 1 : 0};
+          transition-delay: ${(stepNumber + 2) * 500 + 300}ms
+          `
+        )}
+      >
         <ChooseInterests
           icon={<NoIcon size={ICON_SIZE[50]} />}
           answer={TEXT.CHOOSE_NO}
@@ -64,24 +85,22 @@ export const GenerationFoodStep = ({ setFieldValue, values }: IProps) => {
           setOppositeState={setChooseNo1}
         />
       </div>
-      <div className={submitContainer}>
-        <Button
-          variant="outlined"
-          onClick={incStepNumber}
-          style={{
-            borderRadius: "10px",
-            backgroundColor: COLORS.PRIMARY,
-            color: COLORS.SECONDARY,
-            width: "275px",
-            height: "45px",
-            fontSize: "16px",
-            margin: "20px 0 0 0",
-            opacity: buttonVisibility ? 1 : 0.6,
-          }}
-          disabled={!buttonVisibility}
-        >
-          Next step
-        </Button>
+      <div
+        className={css(
+          submitContainer,
+          `
+          opacity: ${appearComponent ? 1 : 0};
+          transition-delay: ${(stepNumber + 3) * 500 + 300}ms
+          `
+        )}
+      >
+        <GenerationStepButton
+          buttonVisibility={buttonVisibility}
+          text={"Next step"}
+          buttonType={"button"}
+          handleClick={buttonClickFunction}
+          setAppear={setAppear}
+        />
       </div>
     </div>
   );

@@ -3,8 +3,6 @@ import { ChooseInterests } from "../ChooseInterests/ChooseInterests";
 import { NoIcon } from "../../assets/icons/NoIcon";
 import { TEXT } from "../../constants/text";
 import { CorrectIcon } from "../../assets/icons/CorrectIcon";
-import { Button } from "@mui/material";
-import { COLORS } from "../../constants/colors";
 import {
   choiseContainer,
   container,
@@ -14,6 +12,9 @@ import { ICON_SIZE } from "../../constants/iconSize";
 import { FormikErrors } from "formik";
 import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import { useChoise } from "../../store/choise";
+import { css } from "@emotion/css";
+import { GenerationStepButton } from "../GenerationStepButton/GenerationStepButton";
+import { useStepperNumber } from "../../store/stepNumber";
 
 interface IProps {
   setFieldValue: (
@@ -22,10 +23,17 @@ interface IProps {
     shouldValidate?: boolean | undefined
   ) => Promise<void> | Promise<FormikErrors<IValues>>;
   values: IValues;
+  setAppear: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const GenerationArtStep = ({ setFieldValue, values }: IProps) => {
+export const GenerationArtStep = ({
+  setFieldValue,
+  values,
+  setAppear,
+}: IProps) => {
   const { chooseNo2, chooseYes2, setChooseNo2, setChooseYes2 } = useChoise();
+  const { stepNumber } = useStepperNumber();
+  const [appearComponent, setAppearConponent] = useState<boolean>(false);
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
   const handleClick = () => {
     if (values.art === null) {
@@ -36,10 +44,21 @@ export const GenerationArtStep = ({ setFieldValue, values }: IProps) => {
   useEffect(() => {
     setButtonVisibility(handleClick());
   });
+  useEffect(() => {
+    setAppearConponent(true);
+  });
 
   return (
     <div className={container}>
-      <div className={choiseContainer}>
+      <div
+        className={css(
+          choiseContainer,
+          `
+          opacity: ${appearComponent ? 1 : 0};
+          transition-delay: ${(stepNumber + 2) * 500 + 300}ms
+          `
+        )}
+      >
         <ChooseInterests
           icon={<NoIcon size={ICON_SIZE[50]} />}
           answer={TEXT.CHOOSE_NO}
@@ -63,25 +82,22 @@ export const GenerationArtStep = ({ setFieldValue, values }: IProps) => {
           setOppositeState={setChooseNo2}
         />
       </div>
-      <div className={submitContainer}>
-        <Button
-          variant="outlined"
-          onClick={handleClick}
-          style={{
-            borderRadius: "10px",
-            backgroundColor: COLORS.PRIMARY,
-            color: COLORS.SECONDARY,
-            width: "275px",
-            height: "45px",
-            fontSize: "16px",
-            margin: "20px 0 0 0",
-            opacity: buttonVisibility ? 1 : 0.6,
-          }}
-          disabled={!buttonVisibility}
-          type="submit"
-        >
-          Submit
-        </Button>
+      <div
+        className={css(
+          submitContainer,
+          `
+          opacity: ${appearComponent ? 1 : 0};
+          transition-delay: ${(stepNumber + 3) * 500 + 300}ms
+          `
+        )}
+      >
+        <GenerationStepButton
+          buttonVisibility={buttonVisibility}
+          text={"Submit"}
+          buttonType={"submit"}
+          handleClick={handleClick}
+          setAppear={setAppear}
+        />
       </div>
     </div>
   );

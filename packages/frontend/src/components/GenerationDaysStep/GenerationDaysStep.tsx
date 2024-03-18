@@ -7,11 +7,12 @@ import {
   submitContainer,
 } from "./GenerationDaysStep.styled";
 import { COLORS } from "../../constants/colors";
-import { Button } from "@mui/material";
 import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import { FormikErrors } from "formik";
 import { useStepperNumber } from "../../store/stepNumber";
 import dayjs from "dayjs";
+import { css } from "@emotion/css";
+import { GenerationStepButton } from "../GenerationStepButton/GenerationStepButton";
 
 interface IProps {
   setFieldValue: (
@@ -21,14 +22,17 @@ interface IProps {
   ) => Promise<void> | Promise<FormikErrors<IValues>>;
   values: IValues;
   currentDate: dayjs.Dayjs;
+  setAppear: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const GenerationDaysStep = ({
   setFieldValue,
   values,
   currentDate,
+  setAppear,
 }: IProps) => {
-  const { incStepNumber } = useStepperNumber();
+  const { stepNumber, incStepNumber } = useStepperNumber();
+  const [appearComponent, setAppearComponent] = useState<boolean>(false);
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
   const handleClick = () => {
     if (values.date.isBefore(currentDate)) {
@@ -38,11 +42,26 @@ export const GenerationDaysStep = ({
     }
     return false;
   };
+  const buttonClickFunction = () => {
+    setAppear(false);
+    incStepNumber();
+  };
   useEffect(() => {
     setButtonVisibility(handleClick());
-  });
+  }, [values.date]);
+  useEffect(() => {
+    setAppearComponent(true);
+  }, []);
   return (
-    <div className={calendarContainer}>
+    <div
+      className={css(
+        calendarContainer,
+        `
+        opacity: ${appearComponent ? 1 : 0};
+        transition-delay: ${(stepNumber + 2) * 500 + 300}ms
+        `
+      )}
+    >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           onChange={(newValue) => setFieldValue("date", newValue)}
@@ -52,25 +71,22 @@ export const GenerationDaysStep = ({
           }}
         />
       </LocalizationProvider>
-      <div className={submitContainer}>
-        <Button
-          variant="outlined"
-          onClick={incStepNumber}
-          style={{
-            borderRadius: "10px",
-            backgroundColor: COLORS.PRIMARY,
-            color: COLORS.SECONDARY,
-            width: "275px",
-            height: "45px",
-            fontSize: "16px",
-            margin: "20px 0 0 0",
-            opacity: `${buttonVisibility ? 1 : 0.6}`,
-          }}
-          fullWidth
-          disabled={!buttonVisibility}
-        >
-          Next step
-        </Button>
+      <div
+        className={css(
+          submitContainer,
+          `
+          opacity: ${appearComponent ? 1 : 0};
+          transition-delay: ${(stepNumber + 3) * 500 + 300}ms
+          `
+        )}
+      >
+        <GenerationStepButton
+          buttonVisibility={buttonVisibility}
+          text={"Next step"}
+          buttonType={"button"}
+          handleClick={buttonClickFunction}
+          setAppear={setAppear}
+        />
       </div>
     </div>
   );

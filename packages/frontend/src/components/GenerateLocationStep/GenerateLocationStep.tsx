@@ -5,19 +5,25 @@ import {
   inputConteiner,
 } from "./GenerateLocationStep.styled";
 import { CountrySelector } from "../CountrySelector/CountrySelector";
-import { Button } from "@mui/material";
-import { COLORS } from "../../constants/colors";
 import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import { useStepperNumber } from "../../store/stepNumber";
+import { css } from "@emotion/css";
+import { GenerationStepButton } from "../GenerationStepButton/GenerationStepButton";
 
 interface IProps {
   handleChange: any;
   values: IValues;
+  setAppear: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const GenerateLocationStep = ({ handleChange, values }: IProps) => {
+export const GenerateLocationStep = ({
+  handleChange,
+  values,
+  setAppear,
+}: IProps) => {
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
-  const { incStepNumber } = useStepperNumber();
+  const [appearComponent, setAppearComponent] = useState<boolean>(false);
+  const { stepNumber, incStepNumber } = useStepperNumber();
   const { country, state, city } = values;
   const handleClick = () => {
     if (country === "") {
@@ -31,12 +37,27 @@ export const GenerateLocationStep = ({ handleChange, values }: IProps) => {
     }
     return true;
   };
+
+  const buttonClickFunction = () => {
+    setAppear(false);
+    incStepNumber();
+  };
+
   useEffect(() => {
     setButtonVisibility(handleClick());
   }, [country, state, city]);
+  useEffect(() => {
+    setAppearComponent(true);
+  }, []);
   return (
     <div className={container}>
-      <div className={inputConteiner}>
+      <div
+        className={css(
+          inputConteiner,
+          `opacity: ${appearComponent ? 1 : 0};
+        transition-delay: ${(stepNumber + 2) * 500 + 300}ms`
+        )}
+      >
         <CountrySelector
           locationValue={values.country}
           handleChange={handleChange("country")}
@@ -50,25 +71,20 @@ export const GenerateLocationStep = ({ handleChange, values }: IProps) => {
           handleChange={handleChange("city")}
         />
       </div>
-      <div className={submitContainer}>
-        <Button
-          variant="outlined"
-          onClick={incStepNumber}
-          style={{
-            borderRadius: "10px",
-            backgroundColor: COLORS.PRIMARY,
-            color: COLORS.SECONDARY,
-            width: "275px",
-            height: "45px",
-            fontSize: "16px",
-            opacity: buttonVisibility ? 1 : 0.6,
-          }}
-          fullWidth
-          disabled={!buttonVisibility}
-          type="button"
-        >
-          Next step
-        </Button>
+      <div
+        className={css(
+          submitContainer,
+          `opacity: ${appearComponent ? 1 : 0};
+        transition-delay: ${(stepNumber + 3) * 500 + 300}ms`
+        )}
+      >
+        <GenerationStepButton
+          buttonVisibility={buttonVisibility}
+          text={"Next step"}
+          buttonType={"button"}
+          handleClick={buttonClickFunction}
+          setAppear={setAppear}
+        />
       </div>
     </div>
   );
