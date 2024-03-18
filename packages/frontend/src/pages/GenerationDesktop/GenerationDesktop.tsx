@@ -1,12 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar/Navbar";
 import {
   centerBlock,
   container,
   content,
   questionBlock,
-  mainQuestion,
-  description,
   contentContainer,
 } from "./GenerationDesktop.styled";
 import { css } from "@emotion/css";
@@ -21,6 +19,7 @@ import { GenerationDurationStep } from "../../components/GenerationDurationStep/
 import { GenerationFoodStep } from "../../components/GenerationFoodStep/GenerationFoodStep";
 import { GenerationArtStep } from "../../components/GenerationArtStep/GenerationArtStep";
 import { useStepperNumber } from "../../store/stepNumber";
+import { GenerationStepContent } from "../../components/GenerationStepContent/GenerationStepContent";
 
 export interface IValues {
   country: string;
@@ -38,7 +37,7 @@ interface IContent {
   step: ReactNode;
 }
 
-interface IPasteContent {
+export interface IPasteContent {
   0: IContent;
   1: IContent;
   2: IContent;
@@ -66,7 +65,7 @@ export const GenerationDesktop = () => {
   };
 
   const { stepNumber } = useStepperNumber();
-
+  const [appear, setAppear] = useState<boolean>(false);
   const { values, handleChange, handleSubmit, setFieldValue } = useFormik({
     initialValues,
     onSubmit: (values) => {
@@ -79,7 +78,11 @@ export const GenerationDesktop = () => {
       header: TEXT.GENERATION_PAGE_CREATE,
       description: TEXT.GENERATION_PAGE_CREATE_DESCRIPTION,
       step: (
-        <GenerateLocationStep handleChange={handleChange} values={values} />
+        <GenerateLocationStep
+          handleChange={handleChange}
+          values={values}
+          setAppear={setAppear}
+        />
       ),
     },
     1: {
@@ -90,6 +93,7 @@ export const GenerationDesktop = () => {
           setFieldValue={setFieldValue}
           values={values}
           currentDate={dayjs(formattedDate)}
+          setAppear={setAppear}
         />
       ),
     },
@@ -97,23 +101,39 @@ export const GenerationDesktop = () => {
       header: TEXT.GENERATION_STEP_DURATION,
       description: TEXT.GENERATION_STEP_DURATION_DESCRIPTION,
       step: (
-        <GenerationDurationStep handleChange={handleChange} values={values} />
+        <GenerationDurationStep
+          handleChange={handleChange}
+          values={values}
+          setAppear={setAppear}
+        />
       ),
     },
     3: {
       header: TEXT.GENERATION_STEP_FOOD,
       description: TEXT.GENERATION_STEP_FOOD_DESCRIPTION,
       step: (
-        <GenerationFoodStep setFieldValue={setFieldValue} values={values} />
+        <GenerationFoodStep
+          setFieldValue={setFieldValue}
+          values={values}
+          setAppear={setAppear}
+        />
       ),
     },
     4: {
       header: TEXT.GENERATION_STEP_ART,
       description: TEXT.GENERATION_STEP_ART_DESCRIPTION,
-      step: <GenerationArtStep setFieldValue={setFieldValue} values={values} />,
+      step: (
+        <GenerationArtStep
+          setFieldValue={setFieldValue}
+          values={values}
+          setAppear={setAppear}
+        />
+      ),
     },
   };
-
+  useEffect(() => {
+    setAppear(true);
+  }, [stepNumber]);
   return (
     <div className={container}>
       <Navbar />
@@ -124,17 +144,15 @@ export const GenerationDesktop = () => {
         )}
       >
         <div className={centerBlock}>
-          <Stepper stateNumber={stepNumber} />
+          <Stepper />
           <div className={contentContainer}>
             <div className={questionBlock}>
-              <div className={mainQuestion}>
-                {pasteContent[stepNumber as keyof IPasteContent].header}
-              </div>
-              <div className={description}>
-                {pasteContent[stepNumber as keyof IPasteContent].description}
-              </div>
               <form onSubmit={handleSubmit}>
-                {pasteContent[stepNumber as keyof IPasteContent].step}
+                <GenerationStepContent
+                  appear={appear}
+                  content={pasteContent}
+                  values={values}
+                />
               </form>
             </div>
           </div>

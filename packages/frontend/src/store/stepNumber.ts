@@ -6,7 +6,7 @@ interface ActiveState {
   decStepNumber: () => void;
 }
 
-export const useStepperNumber = create<ActiveState>()((set) => ({
+export const useStepperNumber = create<ActiveState>((set) => ({
   stepNumber: 0,
   incStepNumber: () => set((prev) => ({ stepNumber: prev.stepNumber + 1 })),
   decStepNumber: () => set((prev) => ({ stepNumber: prev.stepNumber - 1 })),
