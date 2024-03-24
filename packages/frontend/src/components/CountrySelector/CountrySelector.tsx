@@ -1,6 +1,8 @@
 import React from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { COLORS } from "../../constants/colors";
+import { css } from "@emotion/css";
+import { useGetWidth } from "../../hooks/get-width.hook";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -22,8 +24,11 @@ export const CountrySelector = ({
   locationValue,
   handleChange,
 }: ISelectorProps) => {
+  const { windowSize } = useGetWidth();
   return (
-    <div>
+    <div
+      className={css(`width: ${windowSize <= 1190 ? windowSize - 20 : 275}px`)}
+    >
       <FormControl fullWidth>
         <InputLabel
           sx={{
@@ -45,7 +50,6 @@ export const CountrySelector = ({
             borderRadius: "10px",
             fontSize: "20px",
             border: `1px solid ${COLORS.PRIMARY}`,
-            width: "275px",
             height: "45px",
             outline: "none",
             boxShadow: "none",

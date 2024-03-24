@@ -9,11 +9,14 @@ import {
 } from "./SavedTravelsMobile.styled";
 import paris from "../../assets/icons/Paris.png";
 import london from "../../assets/icons/London.png";
+import { ROUTES } from "../../constants/roures";
+import { useNavigate } from "react-router-dom";
 
 export const SavedTravelsMobile = () => {
+  const navigate = useNavigate();
   return (
     <div className={savedContainer}>
-      <div className={backIcon}>
+      <div className={backIcon} onClick={() => navigate(ROUTES.HOME)}>
         <BackIcon />
       </div>
       <div className={savedLayout}>{TEXT.SAVED}</div>
