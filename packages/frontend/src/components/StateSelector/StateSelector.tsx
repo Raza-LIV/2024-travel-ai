@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { COLORS } from "../../constants/colors";
 import { css } from "@emotion/css";
 import { useGetWidth } from "../../hooks/get-width.hook";
-import { ICountry } from "country-state-city";
+import { IState } from "country-state-city";
+import { IVisibility } from "../../types/generation.types";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,16 +21,21 @@ interface ISelectorProps {
   locationValue: string;
   handleChange: any;
   type: string;
-  array: ICountry[];
+  array: IState[];
+  visibility: IVisibility;
 }
 
-export const CountrySelector = ({
+export const StateSelector = ({
   locationValue,
   handleChange,
   type,
   array,
+  visibility,
 }: ISelectorProps) => {
   const { windowSize } = useGetWidth();
+  useEffect(() => {
+    visibility.setStateVisibility(array.length > 0 ? true : false);
+  }, [array]);
 
   return (
     <div
@@ -39,7 +45,9 @@ export const CountrySelector = ({
         <InputLabel
           sx={{
             top: "-8px",
-            color: `${COLORS.PRIMARY_OPAQUE[60]} !important`,
+            color: `${
+              COLORS.PRIMARY_OPAQUE[visibility.stateVisibility ? 60 : 30]
+            } !important`,
             fontSize: "20px",
             backgroundColor: COLORS.SECONDARY,
             ".MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {},
@@ -51,11 +59,16 @@ export const CountrySelector = ({
           value={locationValue}
           onChange={handleChange}
           MenuProps={MenuProps}
+          disabled={!visibility.stateVisibility}
           sx={{
             color: COLORS.PRIMARY,
             borderRadius: "10px",
             fontSize: "20px",
-            border: `1px solid ${COLORS.PRIMARY}`,
+            border: `1px solid ${
+              visibility.stateVisibility
+                ? COLORS.PRIMARY
+                : COLORS.PRIMARY_OPAQUE[30]
+            }`,
             height: "45px",
             outline: "none",
             boxShadow: "none",

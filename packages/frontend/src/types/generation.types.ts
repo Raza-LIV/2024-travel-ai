@@ -11,3 +11,10 @@ export interface IDependencies {
 export interface IHandleClick {
   [key: number]: () => boolean;
 }
+
+export interface IVisibility {
+  stateVisibility: boolean;
+  setStateVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  cityVisibility: boolean;
+  setCityVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+}

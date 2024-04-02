@@ -1,28 +1,31 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { COLORS } from "../../constants/colors";
-import { backButton } from "./GenerationStepButton.styled";
+import { backButton } from "./GenerationButton.styled";
 import { useStepperNumber } from "../../store/stepNumber";
 
 interface IProps {
   buttonVisibility: boolean;
-  text: string;
-  buttonType: "button" | "submit" | "reset" | undefined;
-  handleClick: () => void;
-  setAppear: React.Dispatch<React.SetStateAction<boolean>>;
+  index: number;
 }
 
-export const GenerationStepButton = ({
-  buttonVisibility,
-  text,
-  buttonType,
-  handleClick,
-  setAppear,
-}: IProps) => {
-  const { stepNumber, decStepNumber } = useStepperNumber();
+export const GenerationButton = ({ buttonVisibility, index }: IProps) => {
+  const { stepNumber, decStepNumber, incStepNumber } = useStepperNumber();
   const clickBack = () => {
-    setAppear(false);
     decStepNumber();
+  };
+  const handleClick = () => {
+    if (stepNumber !== 4) {
+      incStepNumber();
+    }
+  };
+  const textFunction = (index: number) => {
+    if (index === 4) return "Submit";
+    return "Next step";
+  };
+  const typeFunction = (index: number) => {
+    if (index === 4) return "submit";
+    return "button";
   };
   return (
     <div>
@@ -48,9 +51,9 @@ export const GenerationStepButton = ({
         }}
         fullWidth
         disabled={!buttonVisibility}
-        type={buttonType}
+        type={typeFunction(index)}
       >
-        {text}
+        {textFunction(index)}
       </Button>
       {stepNumber !== 0 && (
         <div className={backButton} onClick={() => clickBack()}>

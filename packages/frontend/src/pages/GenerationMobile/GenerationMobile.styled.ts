@@ -2,7 +2,7 @@ import { css } from "@emotion/css";
 import { COLORS } from "../../constants/colors";
 
 export const generationPlaceStep = css`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: ${COLORS.PRIMARY};
   display: flex;
