@@ -3,7 +3,8 @@ import { COLORS } from "../../constants/colors";
 
 export const container = css`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  height: 100vh;
 `;
 export const content = css`
   width: 100%;
@@ -20,6 +21,13 @@ export const centerBlock = css`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
+`;
+export const loaderContainer = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
 `;
 export const greating = css`

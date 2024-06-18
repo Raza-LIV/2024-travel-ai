@@ -5,7 +5,6 @@ export const navbarContainer = css`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100%;
   transition-duration: 300ms;
   background-color: ${COLORS.SECONDARY};
   pointer-events: all;
@@ -13,10 +12,10 @@ export const navbarContainer = css`
 
 export const componentContainer = css`
   width: 100%;
+  min-height: 100%;
   transition-duration: 300ms;
-  height: 100%;
-  position: absolute;
-  z-index: 10;
+  position: fixed;
+  z-index: 2;
   left: 0;
   top: 0;
   display: flex;

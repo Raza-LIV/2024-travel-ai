@@ -8,10 +8,7 @@ import { EStepperIconState, StepIcon } from "../../assets/icons/StepIcon";
 import { COLORS } from "../../constants/colors";
 import { container, divider, mainStep, step } from "./Stepper.styled";
 import { css } from "@emotion/css";
-
-interface IProps {
-  stateNumber: number;
-}
+import { useStepperNumber } from "../../store/stepNumber";
 
 interface ISteps {
   0: EStepperIconState;
@@ -21,7 +18,8 @@ interface ISteps {
   4: EStepperIconState;
 }
 
-export const Stepper = ({ stateNumber }: IProps) => {
+export const Stepper = () => {
+  const { stepNumber } = useStepperNumber();
   const [steps, setSteps] = useState<ISteps>({
     0: EStepperIconState.UNKNOWN,
     1: EStepperIconState.UNKNOWN,
@@ -35,66 +33,66 @@ export const Stepper = ({ stateNumber }: IProps) => {
 
       Object.keys(updatedSteps).forEach((key) => {
         const numKey = parseInt(key);
-        if (numKey < stateNumber) {
+        if (numKey < stepNumber) {
           updatedSteps[numKey as keyof ISteps] = EStepperIconState.PASSED;
         }
-        if (numKey === stateNumber) {
+        if (numKey === stepNumber) {
           updatedSteps[numKey as keyof ISteps] = EStepperIconState.CURRENT;
         }
-        if (numKey > stateNumber) {
+        if (numKey > stepNumber) {
           updatedSteps[numKey as keyof ISteps] = EStepperIconState.UNKNOWN;
         }
       });
       return updatedSteps;
     });
-  }, [stateNumber]);
+  }, [stepNumber]);
   return (
     <div className={container}>
-      <div className={stateNumber === 0 ? mainStep : step}>
+      <div className={stepNumber === 0 ? mainStep : step}>
         <StepIcon icon={<PlaceIcon />} state={steps[0]} />
       </div>
       <div
         className={css([
           divider,
           `background-color: ${
-            stateNumber > 0 ? COLORS.PRIMARY : COLORS.PRIMARY_OPAQUE[30]
+            stepNumber > 0 ? COLORS.PRIMARY : COLORS.PRIMARY_OPAQUE[30]
           }`,
         ])}
       ></div>
-      <div className={stateNumber === 1 ? mainStep : step}>
+      <div className={stepNumber === 1 ? mainStep : step}>
         <StepIcon icon={<DateIcon />} state={steps[1]} />
       </div>
       <div
         className={css([
           divider,
           `background-color: ${
-            stateNumber > 1 ? COLORS.PRIMARY : COLORS.PRIMARY_OPAQUE[30]
+            stepNumber > 1 ? COLORS.PRIMARY : COLORS.PRIMARY_OPAQUE[30]
           }`,
         ])}
       ></div>
-      <div className={stateNumber === 2 ? mainStep : step}>
+      <div className={stepNumber === 2 ? mainStep : step}>
         <StepIcon icon={<PeriodIcon />} state={steps[2]} />
       </div>
       <div
         className={css([
           divider,
           `background-color: ${
-            stateNumber > 2 ? COLORS.PRIMARY : COLORS.PRIMARY_OPAQUE[30]
+            stepNumber > 2 ? COLORS.PRIMARY : COLORS.PRIMARY_OPAQUE[30]
           }`,
         ])}
       ></div>
-      <div className={stateNumber === 3 ? mainStep : step}>
+      <div className={stepNumber === 3 ? mainStep : step}>
         <StepIcon icon={<FoodIcon />} state={steps[3]} />
       </div>
       <div
         className={css([
           divider,
           `background-color: ${
-            stateNumber > 3 ? COLORS.PRIMARY : COLORS.PRIMARY_OPAQUE[30]
+            stepNumber > 3 ? COLORS.PRIMARY : COLORS.PRIMARY_OPAQUE[30]
           }`,
         ])}
       ></div>
-      <div className={stateNumber === 4 ? mainStep : step}>
+      <div className={stepNumber === 4 ? mainStep : step}>
         <StepIcon icon={<ArtIcon />} state={steps[4]} />
       </div>
     </div>

@@ -5,7 +5,6 @@ export const container = css`
   width: 100%;
   height: 100%;
 `;
-
 export const content = css`
   width: 100%;
   height: 100%;
@@ -15,7 +14,6 @@ export const content = css`
   align-items: center;
   transition-duration: 500ms;
 `;
-
 export const centerBlock = css`
   height: 100%;
   width: 900px;
@@ -25,7 +23,6 @@ export const centerBlock = css`
   justify-content: flex-start;
   align-items: center;
 `;
-
 export const pageName = css`
   height: 80px;
   display: flex;
@@ -34,7 +31,6 @@ export const pageName = css`
   font-size: 34px;
   font-weight: bold;
 `;
-
 export const travelsList = css`
   height: 100%;
   width: 100%;
@@ -42,4 +38,5 @@ export const travelsList = css`
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 20px;
+  margin: 0 0 20px 0;
 `;

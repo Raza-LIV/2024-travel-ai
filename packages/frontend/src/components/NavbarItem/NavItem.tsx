@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { InfoIcon } from "../../assets/icons/InfoIcon";
 import { ICON_SIZE } from "../../constants/iconSize";
 import { HideIcon } from "../../assets/icons/HideIcon";
@@ -37,10 +37,6 @@ export const NavItem = ({ content }: IProps) => {
   };
 
   const param = useLocation();
-  console.log(param.pathname);
-
-  console.log(param.pathname, content.routeName);
-
   useEffect(() => {
     if (!isNavbarOpen) {
       setIsActive(false);

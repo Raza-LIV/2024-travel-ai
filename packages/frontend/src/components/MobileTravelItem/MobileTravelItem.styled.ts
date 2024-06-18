@@ -19,11 +19,21 @@ export const other = css`
 `;
 export const add = css`
   border: dotted 1px ${COLORS.PRIMARY_OPAQUE[30]};
+  transition-duration: 300ms;
+  &:hover {
+    background-color: ${COLORS.BLACK_OPAQUE[20]};
+  }
 `;
 export const notAdd = css`
   border: solid 1px ${COLORS.PRIMARY_OPAQUE[30]};
 `;
+export const like = css`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+`;
 export const flag = css`
+  position: relative;
   height: 110px;
   width: 35%;
   max-width: 200px;

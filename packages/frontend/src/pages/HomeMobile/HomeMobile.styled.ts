@@ -34,6 +34,13 @@ export const navigationMenu = css`
     width: 0;
   }
 `;
+export const loaderContainer = css`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const userName = css`
   color: ${COLORS.PRIMARY};
   width: 100vw;

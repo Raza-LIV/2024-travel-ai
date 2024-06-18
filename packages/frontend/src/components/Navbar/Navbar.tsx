@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavbarActive } from "../../store/isNavbarOpen";
 import { css } from "@emotion/css";
 import { NavItem } from "../NavbarItem/NavItem";
@@ -58,7 +57,7 @@ export const Navbar = () => {
           content={{
             title: TEXT.SETTINGS,
             text: TEXT.SETTINGS_DESCRIPTION,
-            icon: <SettingsIcon isPrimaryColor size={ICON_SIZE[50]} />,
+            icon: <SettingsIcon color={COLORS.PRIMARY} size={ICON_SIZE[50]} />,
             nav: ROUTES.SETTINGS,
             routeName: ENavbarOptions.SETTINGS,
           }}
