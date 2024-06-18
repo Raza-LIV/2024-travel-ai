@@ -1,5 +1,4 @@
 import { Button } from "@mui/material";
-import React from "react";
 import { COLORS } from "../../constants/colors";
 import { backButton } from "./GenerationButton.styled";
 import { useStepperNumber } from "../../store/stepNumber";
@@ -18,6 +17,9 @@ export const GenerationButton = ({ buttonVisibility, index }: IProps) => {
     if (stepNumber !== 4) {
       incStepNumber();
     }
+    if (stepNumber === 4) {
+      // incStepNumber();
+    }
   };
   const textFunction = (index: number) => {
     if (index === 4) return "Submit";
@@ -32,7 +34,7 @@ export const GenerationButton = ({ buttonVisibility, index }: IProps) => {
       <Button
         variant="outlined"
         onClick={() => {
-          handleClick();
+          index !== 4 && handleClick();
         }}
         style={{
           borderRadius: "10px",

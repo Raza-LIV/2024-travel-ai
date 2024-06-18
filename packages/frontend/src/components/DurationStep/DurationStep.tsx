@@ -1,10 +1,9 @@
 import { css } from "@emotion/css";
-import React from "react";
 import { useGetWidth } from "../../hooks/get-width.hook";
 import { COLORS } from "../../constants/colors";
 import { TextField } from "@mui/material";
-import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import { container } from "./DurationStep.styled";
+import { IValues } from "../../types/generation.types";
 
 interface IProps {
   appearComponent: boolean;

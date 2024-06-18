@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CountrySelector } from "../CountrySelector/CountrySelector";
-import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import { css } from "@emotion/css";
 import { useGetWidth } from "../../hooks/get-width.hook";
 import {
@@ -11,7 +10,7 @@ import { City, Country, ICity, IState, State } from "country-state-city";
 import { StateSelector } from "../StateSelector/StateSelector";
 import { CitySelector } from "../CitySelector/CitySelector";
 import { FormikErrors } from "formik";
-import { IVisibility } from "../../types/generation.types";
+import { IValues, IVisibility } from "../../types/generation.types";
 
 interface IProps {
   appearComponent: boolean;

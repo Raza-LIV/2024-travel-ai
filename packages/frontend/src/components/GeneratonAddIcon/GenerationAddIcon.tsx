@@ -1,5 +1,4 @@
 import { css } from "@emotion/css";
-import React from "react";
 import { detailsContainer, iconAndDetails } from "./GenerationAddIcon.styled";
 
 interface IProps {

@@ -1,4 +1,3 @@
-import React from "react";
 import { ICurrentIcon } from "../../types/icon.types";
 
 export const InfoIcon = ({ size }: ICurrentIcon) => {

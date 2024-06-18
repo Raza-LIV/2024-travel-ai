@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { ChooseInterests } from "../ChooseInterests/ChooseInterests";
 import { NoIcon } from "../../assets/icons/NoIcon";
 import { ICON_SIZE } from "../../constants/iconSize";
@@ -7,9 +7,10 @@ import { TEXT } from "../../constants/text";
 import { useGetWidth } from "../../hooks/get-width.hook";
 import { CorrectIcon } from "../../assets/icons/CorrectIcon";
 import { FormikErrors } from "formik";
-import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
-import { useChoise } from "../../store/choise";
-import { choiseContainer } from "./FoodStep.styled";
+import { useChoice } from "../../store/choice";
+import { choiceContainer } from "./FoodStep.styled";
+import { IValues } from "../../types/generation.types";
+import { COLORS } from "../../constants/colors";
 
 interface IProps {
   appearComponent: boolean;
@@ -22,7 +23,7 @@ interface IProps {
 
 export const FoodStep = ({ appearComponent, setFieldValue }: IProps) => {
   const { windowSize } = useGetWidth();
-  const { chooseNo1, chooseYes1, setChooseNo1, setChooseYes1 } = useChoise();
+  const { chooseNo1, chooseYes1, setChooseNo1, setChooseYes1 } = useChoice();
   useEffect(() => {
     setChooseNo1(0);
     setChooseYes1(0);
@@ -30,7 +31,7 @@ export const FoodStep = ({ appearComponent, setFieldValue }: IProps) => {
   return (
     <div
       className={css(
-        choiseContainer,
+        choiceContainer,
         `
         opacity: ${appearComponent ? 1 : 0};
         transition-delay: ${windowSize <= 1190 ? 800 : 1800}ms;
@@ -38,7 +39,7 @@ export const FoodStep = ({ appearComponent, setFieldValue }: IProps) => {
       )}
     >
       <ChooseInterests
-        icon={<NoIcon size={ICON_SIZE[50]} />}
+        icon={<NoIcon size={ICON_SIZE[50]} color={COLORS.PRIMARY} />}
         answer={TEXT.CHOOSE_NO}
         text={TEXT.STEP_FOOD_CHOOSE_NO}
         setFieldValue={setFieldValue}
@@ -47,6 +48,7 @@ export const FoodStep = ({ appearComponent, setFieldValue }: IProps) => {
         state={chooseNo1}
         setState={setChooseNo1}
         setOppositeState={setChooseYes1}
+        isBig={true}
       />
       <ChooseInterests
         icon={<CorrectIcon size={ICON_SIZE[60]} />}
@@ -58,6 +60,7 @@ export const FoodStep = ({ appearComponent, setFieldValue }: IProps) => {
         state={chooseYes1}
         setState={setChooseYes1}
         setOppositeState={setChooseNo1}
+        isBig={true}
       />
     </div>
   );

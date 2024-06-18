@@ -1,18 +1,24 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useGetWidth } from "../../hooks/get-width.hook";
 import { GenerationMobile } from "../GenerationMobile/GenerationMobile";
-import {
-  GenerationDesktop,
-  IValues,
-} from "../GenerationDesktop/GenerationDesktop";
+import { GenerationDesktop } from "../GenerationDesktop/GenerationDesktop";
 import dayjs from "dayjs";
 import { useFormik } from "formik";
 import { useStepperNumber } from "../../store/stepNumber";
 import { GenerationStep } from "../../components/GenerationStep/GenerationStep";
 import { TEXT } from "../../constants/text";
+import { IValues } from "../../types/generation.types";
+import { ITravelDto } from "../../service/service";
+import { useTravel } from "../../hooks/travel.hook";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants/roures";
+import { useLoad } from "../../store/load";
+// import { addTravel } from "../../service/service";
 
 export const Generation = () => {
+  const navigate = useNavigate();
   const { windowSize } = useGetWidth();
+  const { addTravel } = useTravel();
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, "0");
@@ -22,8 +28,8 @@ export const Generation = () => {
     country: "",
     state: "",
     city: "",
-    date: dayjs(formattedDate),
-    duration: null,
+    date: dayjs(formattedDate).format("YYYY-MM-DD"),
+    duration: undefined,
     food: null,
     art: null,
   };
@@ -34,8 +40,38 @@ export const Generation = () => {
       initialValues,
       onSubmit: (values) => {
         alert(JSON.stringify(values, null, 2));
+        console.log("After sublit222");
+        navigate(ROUTES.HOME);
       },
     });
+  // Backend
+  const [userId, setUserId] = useState<string>("");
+  const defUserId = () => {
+    const userIdObject = localStorage.getItem("userId");
+    if (userIdObject) {
+      setUserId(JSON.parse(userIdObject).userId);
+    }
+    return userId;
+  };
+  const createTravelDto: ITravelDto = {
+    userId: userId,
+    country: values.country,
+    state: values.state,
+    city: values.city,
+    date: values.date,
+    duration: values.duration,
+    food: values.food,
+    art: values.art,
+  };
+  const { setInProcess } = useLoad();
+  const submitFunction = async () => {
+    setInProcess(true);
+    handleSubmit();
+    await addTravel(createTravelDto).then(() => {
+      setInProcess(false);
+    });
+  };
+  // Backend
   const pasteText = (index: number) => {
     if (index === 0)
       return `${values.country}${values.city && `, ${values.city}`}`;
@@ -70,6 +106,7 @@ export const Generation = () => {
       values={values}
       handleChange={handleChange}
       setFieldValue={setFieldValue}
+      key={0}
     />,
     <GenerationStep
       index={1}
@@ -77,6 +114,7 @@ export const Generation = () => {
       values={values}
       handleChange={handleChange}
       setFieldValue={setFieldValue}
+      key={1}
     />,
     <GenerationStep
       index={2}
@@ -84,6 +122,7 @@ export const Generation = () => {
       values={values}
       handleChange={handleChange}
       setFieldValue={setFieldValue}
+      key={2}
     />,
     <GenerationStep
       index={3}
@@ -91,6 +130,7 @@ export const Generation = () => {
       values={values}
       handleChange={handleChange}
       setFieldValue={setFieldValue}
+      key={3}
     />,
     <GenerationStep
       index={4}
@@ -98,6 +138,7 @@ export const Generation = () => {
       values={values}
       handleChange={handleChange}
       setFieldValue={setFieldValue}
+      key={4}
     />,
   ];
   const chooseView = () => {
@@ -106,13 +147,13 @@ export const Generation = () => {
         <GenerationMobile
           appear={appear}
           values={values}
-          handleSubmit={handleSubmit}
+          handleSubmit={submitFunction}
           pasteContent={pasteContent}
         />
       );
     return (
       <GenerationDesktop
-        handleSubmit={handleSubmit}
+        handleSubmit={submitFunction}
         pasteContent={pasteContent}
       />
     );
@@ -123,6 +164,7 @@ export const Generation = () => {
   useEffect(() => {
     setStepNumber(0);
     resetForm();
+    defUserId();
   }, []);
   return chooseView();
 };

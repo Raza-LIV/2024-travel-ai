@@ -10,21 +10,10 @@ import {
 import { css } from "@emotion/css";
 import { useNavbarActive } from "../../store/isNavbarOpen";
 import { Stepper } from "../../components/Stepper/Stepper";
-import dayjs from "dayjs";
 import { GenerationStepContent } from "../../components/GenerationStepContent/GenerationStepContent";
 
-export interface IValues {
-  country: string;
-  state: string;
-  city: string;
-  date: dayjs.Dayjs;
-  duration: number | null;
-  food: boolean | null;
-  art: boolean | null;
-}
-
 interface IProps {
-  handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
+  handleSubmit: () => void;
   pasteContent: React.ReactNode[];
 }
 

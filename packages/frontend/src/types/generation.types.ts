@@ -1,9 +1,7 @@
-import dayjs from "dayjs";
-
 export interface IDependencies {
   0: [string, string, string];
-  1: [dayjs.Dayjs];
-  2: [number | null];
+  1: [string];
+  2: [number | undefined];
   3: [boolean | null];
   4: [boolean | null];
 }
@@ -17,4 +15,14 @@ export interface IVisibility {
   setStateVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   cityVisibility: boolean;
   setCityVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface IValues {
+  country: string;
+  state: string;
+  city: string;
+  date: string;
+  duration: number | undefined;
+  food: boolean | null;
+  art: boolean | null;
 }

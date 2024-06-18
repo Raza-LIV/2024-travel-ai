@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "PlanOfDay" ADD COLUMN     "number" INTEGER NOT NULL DEFAULT 1;

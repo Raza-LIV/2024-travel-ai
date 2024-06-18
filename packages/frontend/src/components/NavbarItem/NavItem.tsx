@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { InfoIcon } from "../../assets/icons/InfoIcon";
 import { ICON_SIZE } from "../../constants/iconSize";
 import { HideIcon } from "../../assets/icons/HideIcon";

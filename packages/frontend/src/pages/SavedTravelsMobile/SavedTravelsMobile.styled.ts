@@ -8,7 +8,7 @@ export const savedContainer = css`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 `;
 export const savedLayout = css`
   width: 100vw;

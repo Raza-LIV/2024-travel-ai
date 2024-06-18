@@ -12,7 +12,7 @@ export const TEXT = {
     "This tab lets you save and store your favorite landmarks, attractions, accommodations, and restaurants. You can easily access and review your favorite places to help plan your future trips or share recommendations with others.",
   SETTINGS: "Settings",
   SETTINGS_DESCRIPTION:
-    "In the Settings tab, you can personalize and configure various preferences and options for your travel experience.",
+    "We understand that there may come a time when you wish to delete your account and all associated data. This page is designed to facilitate that process.",
   LONDON: "London",
   LONDON_DESCRIPTION:
     "Begin your day with a visit to the British Museum, where you can explore a vast collection of world art and artifacts, including the Rosetta Stone and the Elgin Marbles. After your museum visit, take a leisurely stroll along the River Thames...",
@@ -44,6 +44,8 @@ export const TEXT = {
     "Knowing your interest in art and history will allow us to include museums, landmarks, and cultural sites that align with your preferences in your personalized itinerary",
   CHOOSE_YES: "YES, PLEASE",
   CHOOSE_NO: "NO, THANKS",
+  DISABLE: "DISABLE",
+  ENABLE: "ENABLE",
   STEP_FOOD_CHOOSE_YES:
     "We will recommend you restaurants, fast foods or cuisine and dining options. You could change this option later on",
   STEP_FOOD_CHOOSE_NO:

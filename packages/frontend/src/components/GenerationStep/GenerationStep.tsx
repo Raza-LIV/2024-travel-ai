@@ -16,7 +16,6 @@ import {
 } from "./GenerationStep.styled";
 import { css } from "@emotion/css";
 import { GenerationButton } from "../GenerationButton/GenerationButton";
-import { IValues } from "../../pages/GenerationDesktop/GenerationDesktop";
 import dayjs from "dayjs";
 import { TEXT } from "../../constants/text";
 import { LocationStep } from "../LocationStep/LocationStep";
@@ -25,7 +24,11 @@ import { FormikErrors } from "formik";
 import { DurationStep } from "../DurationStep/DurationStep";
 import { FoodStep } from "../FoodStep/FoodStep";
 import { ArtStep } from "../ArtStep/ArtStep";
-import { IDependencies, IHandleClick } from "../../types/generation.types";
+import {
+  IDependencies,
+  IHandleClick,
+  IValues,
+} from "../../types/generation.types";
 
 interface IProps {
   index: number;
@@ -112,15 +115,15 @@ export const GenerationStep = ({
     const month = String(currentDate.getMonth() + 1).padStart(2, "0");
     const day = String(currentDate.getDate()).padStart(2, "0");
     const formattedDate = `${year}-${month}-${day}`;
-    if (values.date.isBefore(dayjs(formattedDate))) {
+    if (dayjs(values.date).isBefore(dayjs(formattedDate))) {
       return false;
-    } else if (values.date.isAfter(dayjs(formattedDate))) {
+    } else if (dayjs(values.date).isAfter(dayjs(formattedDate))) {
       return true;
     }
     return false;
   };
   const handleDurationClick = () => {
-    if (values.duration === null) {
+    if (values.duration === undefined) {
       return false;
     }
     if (values.duration < 1) {

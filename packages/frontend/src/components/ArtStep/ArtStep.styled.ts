@@ -1,6 +1,6 @@
 import { css } from "@emotion/css";
 
-export const choiseContainer = css`
+export const choiceContainer = css`
   transition-duration: 500ms;
   display: flex;
   justify-content: space-between;

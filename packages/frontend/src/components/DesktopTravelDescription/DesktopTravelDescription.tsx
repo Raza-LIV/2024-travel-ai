@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   container,
   cityName,
@@ -7,7 +7,7 @@ import {
   descriptionContainer,
 } from "./DesktopTravelDescription.styled";
 import { css } from "@emotion/css";
-import { ICurrentTravel } from "../../pages/SavedTravelsDesktop/SavedTravelsDesktop";
+import { ICurrentTravel } from "../../pages/SavedTravels/SavedTravels";
 
 interface IProps {
   travelDescription: ICurrentTravel;

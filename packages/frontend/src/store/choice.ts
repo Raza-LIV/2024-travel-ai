@@ -11,7 +11,7 @@ interface ActiveState {
   setChooseYes2: (num: number) => void;
 }
 
-export const useChoise = create<ActiveState>((set) => ({
+export const useChoice = create<ActiveState>((set) => ({
   chooseNo1: 0,
   chooseNo2: 0,
   chooseYes1: 0,

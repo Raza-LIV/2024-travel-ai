@@ -4,18 +4,17 @@ import { COLORS } from "../../constants/colors";
 export const container = css`
   width: 100%;
   height: 100%;
+  /* height: 100vh; */
 `;
 
 export const content = css`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   transition-duration: 500ms;
 `;
-
 export const centerBlock = css`
   height: 100%;
   width: 900px;
