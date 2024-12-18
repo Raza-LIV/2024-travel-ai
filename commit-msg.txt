@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Take commit message
+commit_msg=$(cat "$1")
+
+# Перевірка на правильний формат
+if ! echo "$commit_msg" | grep -qE '^#ai-travel (feat|fix|bug-fix): .+'; then
+  echo "Error: Incorrect message, it must looks:"
+  echo "#ai-travel 'flag': your own comment"
+  echo "where flag = feat | fix | bug-fix"
+  exit 1
+fi
+
+exit 0
