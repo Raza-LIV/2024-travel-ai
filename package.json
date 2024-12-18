@@ -9,12 +9,23 @@
     "axios": "^1.7.2"
   },
   "devDependencies": {
-    "lerna": "^8.1.2"
+    "lerna": "^8.1.2",
+    "lint-staged": "^15.2.10"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,jsx,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "yarn lint-staged"
   },
   "scripts": {
     "update-version": "lerna version --no-private",
     "build": "npx lerna run build",
-    "clean": "lerna run --parallel clean"
+    "clean": "lerna run --parallel clean",
+    "lint-staged": "lint-staged"
   },
   "version": "1.0.0",
   "main": "index.js",
